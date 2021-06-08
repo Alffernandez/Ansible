@@ -2,11 +2,9 @@
 - name: Hostname
   hosts: all
   tasks:
-     - debug:
-          msg: "{{ version }}"
      - set_fact:
           name: "{{ ansible_hostname | upper }}"
           ip: "{{ ansible_eth0.ipv4.address }}"
-       when: ansible_os_family== "Redhat"
+       when: ansible_os_family== "CentOS"
      - debug:
           msg: "{{ name }} {{ ip }}"
