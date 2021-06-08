@@ -4,7 +4,7 @@
   tasks:
      - set_fact:
           name: "{{ ansible_hostname | upper }}"
-          version: "{{ osversion }}"
-          hostname: "ansible_distribution"
+          osversion: "{{ osversion }}"
+       when: ansible_distribution == "{{ version }}"
      - debug:
-          msg: "{{ name }} {{ version }} {{hostname}}"
+          msg: "{{ name }} {{ osversion }}"
