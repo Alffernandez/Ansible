@@ -4,5 +4,6 @@
   tasks:
      - set_fact:
           name: "{{ ansible_hostname | upper }}"
+          ip: {{ miip }}
      - debug:
           var: name
