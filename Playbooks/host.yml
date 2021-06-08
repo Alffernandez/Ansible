@@ -4,5 +4,6 @@
   tasks:
      - set_fact:
           name: "{{ ansible_hostname | upper }}"
+          ip: "{{ ansible_eth0.ipv4.address }}"
      - debug:
-          msg: "{{ name }}"
+          msg: "{{ name }} {{ ip }}"
