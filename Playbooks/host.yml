@@ -1,0 +1,8 @@
+---
+- name: Hostname
+  hosts: 192.168.122.15
+  tasks:
+     - set_fact:
+          name: "{{ ansible_hostname | upper }}"
+     - debug:
+          var: name
