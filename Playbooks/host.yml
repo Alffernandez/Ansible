@@ -5,6 +5,6 @@
      - set_fact:
           name: "{{ ansible_hostname | upper }}"
           version: "{{ osversion }}"
+          hostname: "ansible_distribution"
      - debug:
-          var: name
-          var: version
+          msg: "{{ namename }} {{ version }} {{hostname}}"
