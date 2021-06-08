@@ -7,6 +7,6 @@
      - set_fact:
           name: "{{ ansible_hostname | upper }}"
           ip: "{{ ansible_eth0.ipv4.address }}"
-       when: ansible_os_family== "version"
+       when: ansible_os_family== {{ version }}
      - debug:
           msg: "{{ name }} {{ ip }}"
