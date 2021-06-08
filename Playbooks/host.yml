@@ -2,7 +2,7 @@
 - name: Hostname
   hosts: all
   tasks:
-  - debug:
+     - debug:
           msg: "{{ version }}"
      - set_fact:
           name: "{{ ansible_hostname | upper }}"
