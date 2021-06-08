@@ -6,4 +6,4 @@
           name: "{{ ansible_hostname | upper }}"
        when: ansible_distribution == "{{ version }}"
      - debug:
-          msg: "{{ name }} {{ ip }} {{ version }}"
+          msg: "{{ name }} {{ version }}"
