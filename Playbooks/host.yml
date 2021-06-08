@@ -1,5 +1,6 @@
 ---
 - name: Hostname
+  hosts: all
   tasks:
      - set_fact:
           name: "{{ ansible_hostname | upper }}"
