@@ -7,4 +7,4 @@
           version: "{{ osversion }}"
      - debug:
           var: name
-          var: ip
+          var: version
