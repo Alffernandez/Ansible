@@ -4,7 +4,6 @@
   tasks:
      - set_fact:
           name: "{{ ansible_hostname | upper }}"
-          ip: "{{ ansible_eth0.ipv4.address }}"
        when: ansible_distribution == "{{ version }}"
      - debug:
           msg: "{{ name }} {{ ip }} {{ version }}"
