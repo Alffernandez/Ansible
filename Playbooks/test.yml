@@ -1,0 +1,9 @@
+---
+- name: test
+  hosts: all
+  connection: local
+  gather_facts: false
+  
+  tasks:
+     - debug:
+         password: "{{ vault_username }}"
