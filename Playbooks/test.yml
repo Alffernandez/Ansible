@@ -6,4 +6,4 @@
   
   tasks:
      - debug:
-         password: "{{ vault_username }}"
+         msg: "{{ vault_username }}"
