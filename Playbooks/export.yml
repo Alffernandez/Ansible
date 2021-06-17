@@ -1,7 +1,7 @@
 - hosts: all
   tasks:
     - name: Variables
-        shell: export
+      shell: export
       register: result
       
     - debug:
