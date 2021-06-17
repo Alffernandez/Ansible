@@ -1,7 +1,7 @@
 ---
 - name: install and configure mariadb
   hosts: all
-  remote_user: alfonso
+  remote_user: {{ name }}
   become_method: sudo
   become: yes
 
