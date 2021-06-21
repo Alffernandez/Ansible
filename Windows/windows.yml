@@ -1,11 +1,7 @@
 ---
-- name: testing windows module
-  hosts: windows
+- hosts: all
 
-  tasks:
-  - name: ipconfig
-    raw: ipconfig
-    register: ipconfig
-
-  - debug:
-      var: ipconfig
+- tasks:
+   - name: Set timezone to 'Romance Standard Time' (GMT+01:00)
+     win_timezone:
+       timezone: Romance Standard Time
