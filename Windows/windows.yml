@@ -1,1 +1,11 @@
-playbook.yml
+---
+- name: testing windows module
+  hosts: windows
+
+  tasks:
+  - name: ipconfig
+    raw: ipconfig
+    register: ipconfig
+
+  - debug:
+      var: ipconfig
