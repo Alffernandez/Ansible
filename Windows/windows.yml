@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  gather_facts: false
 
 - tasks:
    - name: Set timezone to 'Romance Standard Time' (GMT+01:00)
