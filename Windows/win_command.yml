@@ -5,7 +5,7 @@
      - win_copy:
          src: /tmp/windows.txt
          dest: C:\Users\Administrator\Downloads\windows.txt
-       remote_src: true
+         remote_src: true
          
      - win_find:
          paths: C:\Users\Administrator\Downloads\
