@@ -5,6 +5,7 @@
      - win_copy:
          remote_src: /tmp/windows.txt
          dest: C:\Users\Administrator\Downloads\windows.txt
+         remote_src: True
 
      - win_lineinfile:
          dest: C:\Users\Administrator\Downloads\windows.txt
