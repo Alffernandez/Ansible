@@ -6,8 +6,8 @@
      win_updates:
        category_names:
          - Application
-          CriticalUpdates
-          DefinitionUpdates
-          SecurityUpdates
-          Updates
+         - CriticalUpdates
+         - DefinitionUpdates
+         - SecurityUpdates
+         - Updates
      reboot: yes
