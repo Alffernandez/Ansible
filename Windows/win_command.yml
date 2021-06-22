@@ -3,7 +3,7 @@
   tasks:
   
      - win_copy:
-         src: /tmp/windows.txt
+         src: /root/test/windows.txt
          dest: C:\Users\Administrator\Downloads\windows.txt
          
      - win_find:
