@@ -6,7 +6,7 @@
          src: /tmp/windows.txt
          dest: C:\Users\Administrator\Downloads\windows.txt
          remote_src: true
-       become: True
+       become: yes
        become_user: root
        become_pass: alfonso123 
          
