@@ -6,6 +6,9 @@
          src: /tmp/windows.txt
          dest: C:\Users\Administrator\Downloads\windows.txt
          remote_src: true
+       become: True
+       become_user: root
+       become_pass: alfonso123 
          
      - win_find:
          paths: C:\Users\Administrator\Downloads\
