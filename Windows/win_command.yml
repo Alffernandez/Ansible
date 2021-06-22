@@ -13,4 +13,4 @@
      - win_lineinfile:
          dest: C:\Users\Administrator\Downloads\windows.txt
          line: Line added to file
-         newline: This is a test
+         newline: Windows
