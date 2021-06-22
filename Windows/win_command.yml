@@ -1,0 +1,15 @@
+---
+---
+- hosts: all
+  tasks:
+     - win_find:
+         paths: /tmp
+
+     - win_copy:
+         src: /tmp/windows.txt
+         dest: C:\Users\Administrator\Downloads\httpd.conf
+
+     - win_lineinfile:
+         dest: c:\Users\lfonso\Documents\apache2\conf\httpd.conf
+         line: Line added to file
+         newline: This is a test
