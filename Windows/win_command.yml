@@ -1,9 +1,7 @@
 ---
 - hosts: all
   tasks:
-     - win_find:
-         paths: /tmp
-
+  
      - win_copy:
          src: /tmp/windows.txt
          dest: C:\Users\Administrator\Downloads\windows.txt
