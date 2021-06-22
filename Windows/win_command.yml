@@ -3,5 +3,5 @@
   tasks:
   
      - win_copy:
-         src: /tmp/openssh-portable-8.6.0.0.tar.gz
-         dest: C:\Users\Administrator\Downloads\openssh-portable-8.6.0.0.tar.gz
+         src: /tmp/openssh-portable-8.6.0.0.zip
+         dest: C:\Users\Administrator\Downloads\openssh-portable-8.6.0.0.zip
