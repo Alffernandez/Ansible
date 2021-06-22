@@ -1,3 +1,4 @@
+---
 - name: Installing Windows Updates
   hosts: all
 
