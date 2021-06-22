@@ -9,5 +9,4 @@
          - CriticalUpdates
          - DefinitionUpdates
          - SecurityUpdates
-         - Updates
      reboot: yes
