@@ -1,0 +1,11 @@
+---
+- name: Install Git and Notepad
+  hosts: all
+  
+- tasks: Install Git and Notepad
+  - name: 
+    win_chocolatey:
+      name: 
+        - git
+        - notepadplusplus
+      state: latest
