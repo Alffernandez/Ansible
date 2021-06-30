@@ -30,6 +30,20 @@
 
   - debug:
       var: subnets_ids
+      
+  - name: create security group
+    ec2_group:
+      name: alfonso_group
+      description: alfonso security group
+      vpc_id: vpc-xxxxxxxx
+      region: eu-west-1
+      rules:
+        - proto: tcp
+          ports:
+            - 80
+            - 5432
+            - 22
+          cidr_ip: 0.0.0.0/0
 
   - name: launch an ec2 instance
     ec2:
