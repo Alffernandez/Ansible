@@ -52,7 +52,7 @@
        instance_type: t2.micro
        region: eu-west-1
        image: "{{ find_results.images[0].image_id }}"
-       key_name: alfonso_tower
+       key_name: alffernandez
        group: alfonso_group
        instance_tags:
           Name: alferpal
