@@ -35,7 +35,7 @@
     ec2_group:
       name: alfonso_group
       description: alfonso security group
-      vpc_id: vpc-xxxxxxxx
+      vpc_id: vpc-ec5e458e
       region: eu-west-1
       rules:
         - proto: tcp
