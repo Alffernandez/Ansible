@@ -38,8 +38,8 @@
        instance_type: t2.micro
        region: eu-west-3
        image: "{{ find_results.images[0].image_id }}"
-       key_name: alfonso
-       group: ssh_rule
+       key_name: alfonso_tower
+       group: alfonso_sg
        instance_tags:
           Name: alferpal
        wait: yes
