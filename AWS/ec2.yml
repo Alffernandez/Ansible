@@ -53,7 +53,7 @@
        region: eu-west-1
        image: "{{ find_results.images[0].image_id }}"
        key_name: alfonso_tower
-       group: alfonso_sg
+       group: alfonso_group
        instance_tags:
           Name: alferpal
        wait: yes
