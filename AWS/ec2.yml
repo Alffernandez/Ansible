@@ -10,7 +10,7 @@
   tasks:
   - name: search for the latest rhel 8 ami
     ec2_ami_info:
-     region: eu-west-1
+     region: eu-west-3
      owners: "309956199498"
      aws_access_key: "{{ ec2_access_key }}"
      aws_secret_key: "{{ ec2_secret_key }}"
@@ -25,7 +25,7 @@
     ec2_vpc_subnet_info:
       aws_access_key: "{{ ec2_access_key }}"
       aws_secret_key: "{{ ec2_secret_key }}"
-      region: eu-west-1
+      region: eu-west-3
     register: subnet_ids
 
   - debug:
@@ -36,7 +36,7 @@
        aws_access_key: "{{ ec2_access_key }}"
        aws_secret_key: "{{ ec2_secret_key }}"
        instance_type: t2.micro
-       region: eu-west-1
+       region: eu-west-3
        image: "{{ find_results.images[0].image_id }}"
        key_name: alfonso
        group: ssh_rule
