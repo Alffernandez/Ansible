@@ -36,7 +36,7 @@
        aws_access_key: "{{ ec2_access_key }}"
        aws_secret_key: "{{ ec2_secret_key }}"
        instance_type: t2.micro
-       region: eu-west-3
+       region: eu-west-2
        image: "{{ find_results.images[0].image_id }}"
        key_name: alfonso_tower
        group: alfonso_sg
