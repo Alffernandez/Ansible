@@ -10,7 +10,7 @@
   tasks:
   - name: search for the latest rhel 8 ami
     ec2_ami_info:
-     region: eu-west-3
+     region: eu-west-2
      owners: "309956199498"
      aws_access_key: "{{ ec2_access_key }}"
      aws_secret_key: "{{ ec2_secret_key }}"
@@ -25,7 +25,7 @@
     ec2_vpc_subnet_info:
       aws_access_key: "{{ ec2_access_key }}"
       aws_secret_key: "{{ ec2_secret_key }}"
-      region: eu-west-3
+      region: eu-west-2
     register: subnet_ids
 
   - debug:
