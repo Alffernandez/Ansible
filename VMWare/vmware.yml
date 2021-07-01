@@ -1,29 +1,31 @@
-- name: Create a virtual machine on given ESXi hostname
-  hosts: localhost
-  
+- hosts: localhost
+
+  vars_files:
+    - vmware_vars.yml
   tasks:
-   - name:
-     vmware_guest:
-       validate_certs: no
-       folder: /DC1/vm/
-       name: VM_Alfonso
-       state: poweredon
-       guest_id: centos64Guest
-    # This is hostname of particular ESXi server on which user wants VM to be deployed
-       disk:
-       - size_gb: 10
-         type: thin
-         datastore: datastore1
-       hardware:
-         memory_mb: 512
-         num_cpus: 2
-         scsi: paravirtual
-       networks:
-       - name: VM Network
-         mac: aa:bb:dd:aa:00:14
-         ip: 10.10.10.100
-         netmask: 255.255.255.0
-         device_type: vmxnet3
-       wait_for_ip_address: yes
-     delegate_to: localhost
-     register: deploy_vm
+    - name: Create VM
+      vmware_guest:
+        cluster: "{{ cluster }}"
+        datacenter: "{{ dc }}"
+        disk:
+        - size_gb: "{{ size }}"
+          type: thin
+          datastore: autoselect_datastore
+        folder: "{{ path }}"
+        hardware:
+          memory_mb: "{{ mem }}"
+          num_cpus: "{{ cpu }}"
+          scsi: paravirtual
+        name: "{{ vmname }}"
+        networks: 
+        - name: "{{ network }}"
+        state: present
+        template: "{{ template_name }}"
+        validate_certs: "no"
+        username: "{{ user }}"
+        password: "{{ pass }}"
+        hostname: "{{ host }}"
+      register: temp_vm
+    - name: created vm using template
+      debug:
+        msg: "created VM using template: {{ temp_vm }}"
