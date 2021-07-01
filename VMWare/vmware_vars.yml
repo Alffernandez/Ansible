@@ -8,7 +8,7 @@ vmname: tower.example.local
 network: VM Network
 size: 10
 store: Datastore
-template_name: ansibletemplate-test
+template_name: rhel7_test2
 mem: 2048
 cpu: 1
 scsi: paravirtual
