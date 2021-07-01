@@ -22,10 +22,8 @@
         state: present
         template: "{{ template_name }}"
         validate_certs: "no"
-        username: "{{ user }}"
-        password: "{{ pass }}"
-        hostname: "{{ host }}"
       register: temp_vm
+      
     - name: created vm using template
       debug:
         msg: "created VM using template: {{ temp_vm }}"
