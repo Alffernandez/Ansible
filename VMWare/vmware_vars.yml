@@ -4,7 +4,7 @@ cluster: prod-cluster
 resource: Resources
 #id: rhel7_64Guest
 uuid: 4225da3b-17b7-882d-682b-9a3301788b49
-vmname: tower.example.local
+vmname: alfonsotest.example.local
 network: VM Network
 size: 10
 store: Datastore
