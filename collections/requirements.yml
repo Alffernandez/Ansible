@@ -1,1 +1,5 @@
-prueba
+collections:
+  # Install a collection from Ansible Galaxy.
+  - name: ansible.posix
+    version: 1.2.1-dev4
+    source: https://galaxy.ansible.com
