@@ -2,3 +2,7 @@ collections:
     - name: google.cloud
     - name: ansible.utils
     - name: amazon.aws
+    - name: ansible.tower
+      source: https://cloud.redhat.com
+    
+   
