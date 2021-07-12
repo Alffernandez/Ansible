@@ -1,1 +1,5 @@
-prueba
+collections:
+    - name: redhat.rhv
+    - name: ansible.utils
+    - name: ansible.tower
+    - name: amazon.aws
