@@ -1,5 +1,5 @@
 collections:
-    - name: redhat.rhv
+    - name: google.cloud
     - name: ansible.utils
     - name: ansible.tower
     - name: amazon.aws
