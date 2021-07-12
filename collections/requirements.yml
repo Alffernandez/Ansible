@@ -3,6 +3,3 @@ collections:
     - name: ansible.utils
     - name: amazon.aws
     - name: ansible.tower
-      source: https://cloud.redhat.com
-    
-   
