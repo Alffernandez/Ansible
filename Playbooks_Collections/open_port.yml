@@ -10,7 +10,6 @@
   - debug:
       var: result.stdout
 
-
   - name: Permit incoming connections on port 10050/tcp
     ansible.posix.firewalld:
       port: 10050/tcp
