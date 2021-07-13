@@ -1,5 +1,5 @@
 collections:
-    - name: google.cloud
     - name: ansible.utils
-    - name: amazon.aws
     - name: ansible.tower
+    - name: ansible.posix
+      source: https://cloud.redhat.com
