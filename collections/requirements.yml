@@ -1,5 +1,6 @@
 collections:
     - name: ansible.utils
     - name: ansible.tower
+      source: https://galaxy.ansible.com
     - name: ansible.posix
       source: https://cloud.redhat.com/api/automation-hub/
