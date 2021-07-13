@@ -11,3 +11,6 @@
       is_superuser: yes
       password: miles123
       username: milesmorales
+      tower_host: 192.168.122.2
+      tower_username: admin
+      tower_password: alfonso123
