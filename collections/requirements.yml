@@ -2,4 +2,3 @@ collections:
     - name: ansible.utils
     - name: ansible.tower
     - name: ansible.posix
-      source: https://cloud.redhat.com
