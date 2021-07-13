@@ -1,6 +1,9 @@
 ---
 - name: create user from galaxy colletions
   hosts: all
+  
+  vars_files:
+    - vars.yml
  
   tasks:
   - name: using ansible.tower collections
