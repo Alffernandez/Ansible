@@ -1,0 +1,13 @@
+---
+- name: create user from galaxy colletions
+  hosts: all
+ 
+  tasks:
+  - name: using ansible.tower collections
+    ansible.tower.tower_user:
+      email: miles@gmail.com
+      firts_name: Miles
+      last_name: Morales
+      is_superuser: yes
+      password: miles123
+      username: milesmorales
