@@ -4,7 +4,7 @@
   - name: Load manifest into variable
     local_action:
       module: slurp
-      src: /root/manifest/manifest_Subscription_Tower_20210721T064551Z.zip
+      src: /var/lib/awx/manifest/manifest_Subscription_Tower_20210721T064551Z.zip
     register: manifest_file
 
   - name: Post manifest file
