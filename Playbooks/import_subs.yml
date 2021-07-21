@@ -1,3 +1,4 @@
+---
 - name: Load manifest into variable
   local_action:
     module: slurp
