@@ -1,0 +1,65 @@
+---
+- name: launching an ec2 instance
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    - keypair.yml
+
+  tasks:
+  - name: search for the latest rhel 8 ami
+    ec2_ami_info:
+     region: eu-west-1
+     owners: "309956199498"
+     aws_access_key: "{{ ec2_access_key }}"
+     aws_secret_key: "{{ ec2_secret_key }}"
+     filters:
+       name: "ami-0e386f6d24d5f5cfb"
+    register: find_results
+
+  - debug:
+      var: find_results
+
+  - name: find a subnet id
+    ec2_vpc_subnet_info:
+      aws_access_key: "{{ ec2_access_key }}"
+      aws_secret_key: "{{ ec2_secret_key }}"
+      region: eu-west-1
+    register: subnet_ids
+
+  - debug:
+      var: subnets_ids
+      
+  - name: create security group
+    ec2_group:
+      name: alfonso_group
+      description: alfonso security group
+      vpc_id: vpc-ec5e458e
+      region: eu-west-1
+      rules:
+        - proto: tcp
+          ports:
+            - 80
+            - 5432
+            - 22
+          cidr_ip: 0.0.0.0/0
+
+  - name: launch an ec2 instance
+    ec2:
+       aws_access_key: "{{ ec2_access_key }}"
+       aws_secret_key: "{{ ec2_secret_key }}"
+       instance_type: t2.micro
+       region: eu-west-1
+       image: "{{ find_results.images[0].image_id }}"
+       key_name: alffernandez
+       group: alfonso_group
+       instance_tags:
+          Name: alferpal
+       wait: yes
+       vpc_subnet_id: "{{ subnet_ids.subnets[0].id }}"
+       assign_public_ip: yes
+    register: instance_info
+
+  - debug:
+      var: instance_info
