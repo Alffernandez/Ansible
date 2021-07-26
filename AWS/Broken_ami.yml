@@ -15,7 +15,7 @@
      aws_access_key: "{{ ec2_access_key }}"
      aws_secret_key: "{{ ec2_secret_key }}"
      filters:
-       name: "ami-05fb59e7e2a35d926"
+       name: "tower-broken-ami"
     register: find_results
 
   - debug:
