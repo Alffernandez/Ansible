@@ -7,4 +7,3 @@
         tower_oauthtoken: "{{ tower_token }}"
         job_template: "{{ job_name }}"
         validate_certs: "no"
-      when: tower_token != "" and tower_inventory == ""
