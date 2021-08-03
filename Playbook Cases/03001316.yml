@@ -1,0 +1,7 @@
+- name: launch job {{ job_name }} using token without prompt for inventory
+  tower_job_launch:
+     tower_host: "{{ tower_url }}"
+     tower_oauthtoken: "{{ tower_token }}"
+     job_template: "{{ job_name }}"
+     validate_certs: "no"
+  when: tower_token != "" and tower_inventory == ""
