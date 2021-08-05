@@ -1,0 +1,13 @@
+---
+- name: Prueba de escalado
+  hosts: all
+  gather_facts: no
+
+  tasks:
+      - name: Prueba de escalado 1 (sesu)
+        shell: |
+          id
+        become: yes
+        become_exe: /opt/CA/AccessControl/bin/sesu
+        become_flags: "-"
+        become_user: root
