@@ -5,6 +5,7 @@
 
   tasks:
       - name: Prueba de escalado 1 (sesu)
+        community.general.sesu:
         shell: |
           id
         become: yes
