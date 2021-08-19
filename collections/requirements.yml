@@ -1,4 +1,0 @@
-collections:
-    - name: git+geerlingguy-php_roles-1.0.0.tar.gz://github.com/Alffernandez/Ansible.git
-      type: git
-      version: devel
