@@ -1,9 +1,5 @@
 ---
 - name: test for date and time
-  hosts:
-    - localhost
-    - somehost_somewhere
-
   tasks:
     - name: print system facts
       debug:
