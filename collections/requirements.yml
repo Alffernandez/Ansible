@@ -1,1 +1,3 @@
-prueba
+collections:
+  - name: ansible.tower
+  - name: grdavies.nutanix
