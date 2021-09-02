@@ -1,20 +1,17 @@
 ---
 - name: create user from galaxy colletions
   hosts: all
-  
-  vars_files:
-    - vars.yml
  
   tasks:
   - name: using ansible.tower collections
     ansible.tower.tower_user:
       email: miles@gmail.com
-      first_name: Miles
+      first_name: Alfonso
       last_name: Morales
       is_superuser: yes
-      password: "{{ password }}"
+      password: test
       username: milesmorales
       tower_host: 192.168.122.2
       tower_username: admin
-      tower_password: "{{ tower_password }}"
+      tower_password: alfonso123
       validate_certs: no
