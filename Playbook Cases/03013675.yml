@@ -2,10 +2,7 @@
   hosts: '{{ myhosts }}' #contains the list of hosts
   gather_facts: no
   tasks:
-    - name: Gather facts
-      ios_facts:
-        gather_subset: min
-
+  
     - name: Save the Hostnames
       set_fact:
         hosts_list: "{{ ansible_net_hostname }}"
