@@ -10,15 +10,15 @@
       setup:
         gather_subset: min
 
-   - name: Save the Hostnames
-     set_fact:
-       hosts_list: "{{ ansible_hostname }}"
+    - name: Save the Hostnames
+      set_fact:
+        hosts_list: "{{ ansible_hostname }}"
    
-   - debug:
-       var: hosts_list
+    - debug:
+        var: hosts_list
 
-   - name: Save hostlist into a file
-     lineinfile:
-       line: "{{ hosts_list }}"
-       path: "/tmp/Hosts_1.txt"
-     delegate_to: localhost
+    - name: Save hostlist into a file
+      lineinfile:
+        line: "{{ hosts_list }}"
+        path: "/tmp/Hosts_1.txt"
+      delegate_to: localhost
