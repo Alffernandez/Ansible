@@ -1,14 +1,24 @@
 - name: Get Host Names
   hosts: '{{ myhosts }}' #contains the list of hosts
   gather_facts: no
-  tasks:
-  
-    - name: Save the Hostnames
-      set_fact:
-        hosts_list: "{{ ansible_net_hostname }}"
 
-    - name: Save hostlist into a file
-      lineinfile:
-        line: "{{ hosts_list }}"
-        path: "/home/Hosts_1.txt"
-      delegate_to: localhost
+  tasks:
+    - debug:
+        var: myhosts
+        
+    - name: Gather facts
+      ios_facts:
+        gather_subset: min
+
+   - name: Save the Hostnames
+     set_fact:
+       hosts_list: "{{ ansible_net_hostname }}"
+   
+   - debug:
+       var: hosts_list
+
+   - name: Save hostlist into a file
+     lineinfile:
+       line: "{{ hosts_list }}"
+       path: "/home/projects/Hosts_1.txt"
+     delegate_to: localhost
