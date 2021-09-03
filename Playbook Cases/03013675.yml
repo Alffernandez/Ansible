@@ -12,7 +12,7 @@
 
     - name: Save the Hostnames
       set_fact:
-        hosts_list: "{{ ansible_hostname }}"
+        hosts_list: "{{ inventory_hostname }}"
    
     - debug:
         var: hosts_list
