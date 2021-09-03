@@ -1,7 +1,7 @@
 - name: Get Host Names
   hosts: '{{ myhosts }}' #contains the list of hosts
   gather_facts: no
-    tasks:
+  tasks:
     - name: Gather facts
       ios_facts:
         gather_subset: min
