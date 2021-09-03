@@ -19,6 +19,7 @@
 
     - name: Save hostlist into a file
       lineinfile:
+        create: yes
         line: "{{ hosts_list }}"
         path: "/tmp/Hosts_1.txt"
       delegate_to: localhost
