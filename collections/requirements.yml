@@ -1,2 +1,2 @@
 collections:
-  - name: git+https://github.com/00willo/ansible-role_sublimetext.git
+  - src: git+https://github.com/00willo/ansible-role_sublimetext.git
