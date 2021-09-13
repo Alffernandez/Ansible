@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+    - name: Copy svc_solar Perl scritps
+      copy:
+        src: "/var/tmp/project/test/"
+        dest: "/tmp/alfonso"
