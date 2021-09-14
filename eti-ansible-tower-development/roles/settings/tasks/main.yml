@@ -1,9 +1,0 @@
----
-
-- name: Deploy Ansible Tower Settings
-  ansible.tower.tower_settings: "{{ tower_module_defaults |combine ({ 'value' : item.value})| combine ({ 'name' : item.key}) }}"
-  loop: "{{ (ansible_tower_settings[TIER]|default({})|dict2items) + (ansible_tower_settings['all']|dict2items) }}" 
-  loop_control:
-    label:  "{{ item.key }}" 
- 
-

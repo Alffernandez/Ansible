@@ -1,7 +1,0 @@
----
-    
-- name: Deploy Ansible Tower Schedules Templates
-  ansible.tower.tower_schedule: "{{ tower_module_defaults | combine(item.value) | combine ({ 'name' : item.key}) }}"
-  loop: "{{ ansible_tower_config[TIER].schedules|dict2items  }}" 
-  loop_control:
-    label:  "{{ item.key }}"
