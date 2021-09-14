@@ -1,0 +1,81 @@
+---
+
+# Search for a rrule value for an existing Schedule on the API https://tower-dev.schroders.com/api/v2/schedules/
+# for available parameter see https://docs.ansible.com/ansible/latest/collections/awx/awx/schedule_module.html#ansible-collections-awx-awx-schedule-module
+
+ansible_tower_config:
+  default:
+    schedules:
+  prd:
+    schedules:
+      SCHRODERS_inventory_node_push_daily:
+        unified_job_template:  SCHRODERS_inventory_node_push
+        rrule:  DTSTART;TZID=Europe/London:20201204T070000 RRULE:FREQ=DAILY;INTERVAL=1
+      UNIX_consistent-prd_weekly:
+        unified_job_template: UNIX_consistent
+        rrule: DTSTART;TZID=Europe/London:20200928T120000 RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=WE 
+        enabled: false
+      UNIX_openjdk_solaris_prd_uk_grp_o_weekly:
+        unified_job_template: UNIX_openjdk_solaris_prd_uk_grp_o 
+        rrule: DTSTART;TZID=Europe/London:20210227T063000 RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=SU 
+        enabled: false
+      UNIX_openjdk_solaris_dr_uk_dr_b_weekly:
+        unified_job_template: UNIX_openjdk_solaris_dr_uk_dr_b  
+        rrule: DTSTART;TZID=Europe/London:20210227T180000 RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=SA 
+        enabled: false
+      UNIX_openjdk_solaris_tst_uk_grp_d_weekly:
+        unified_job_template: UNIX_openjdk_solaris_tst_uk_grp_d
+        rrule: DTSTART;TZID=Europe/London:20210227T180000 RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=SA
+        enabled: false
+      UNIX_openjdk_solaris_prd_uk_grp_m_weekly: 
+        unified_job_template: UNIX_openjdk_solaris_prd_uk_grp_m
+        rrule: DTSTART;TZID=Europe/London:20210227T180000 RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=SA
+        enabled: false
+      UNIX_openjdk_solaris_prd_uk_grp_l_weekly: 
+        unified_job_template: UNIX_openjdk_solaris_prd_uk_grp_l
+        rrule: DTSTART;TZID=Europe/London:20210227T133000 RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=SA
+        enabled: false
+      UNIX_vm_template_patch_monthly: 
+        unified_job_template: UNIX_vm_template_patch
+        rrule: DTSTART;TZID=Europe/London:20210320T060000 RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=TU;BYSETPOS=1
+      UNIX_consistent-dev_poc_weekly: 
+        unified_job_template: UNIX_consistent
+        rrule: DTSTART;TZID=Europe/London:20200915T120000 RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=MO
+      UNIX_reposync_daily: 
+        unified_job_template: UNIX_reposync
+        rrule: DTSTART;TZID=Europe/London:20210318T020000 RRULE:FREQ=DAILY;INTERVAL=1
+      UNIX_appmirror_daily:
+        unified_job_template: UNIX_appmirror
+        rrule: DTSTART;TZID=Europe/London:20210318T014000 RRULE:FREQ=DAILY;INTERVAL=1
+      UNIX_ovm_spconfig_backup_daily: 
+        unified_job_template: UNIX_ovm_spconfig_backup
+        rrule: DTSTART;TZID=Europe/London:20210318T230000 RRULE:FREQ=DAILY;INTERVAL=1
+      UNIX_snapshot_maintenance_weekly: 
+        unified_job_template: UNIX_snapshot_maintenance
+        rrule: DTSTART;TZID=Europe/London:20201207T200000 RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=TU
+      UNIX_consistent-tst_weekly: 
+        unified_job_template: UNIX_consistent
+        rrule: DTSTART;TZID=Europe/London:20201005T120000 RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=TU
+      UNIX_refresh_inventory_hourly: 
+        unified_job_template: UNIX_refresh_inventory
+        rrule: DTSTART;TZID=Europe/London:20201204T100000 RRULE:FREQ=HOURLY;INTERVAL=1
+      UNIX_autopatch_hourly: 
+        unified_job_template: UNIX_autopatch
+        rrule: DTSTART;TZID=Europe/London:20201204T140000 RRULE:FREQ=HOURLY;INTERVAL=1
+      UNIX_autopatch_clusters_hourly: 
+        unified_job_template: UNIX_autopatch_clusters
+        rrule: DTSTART;TZID=Europe/London:20201204T153000 RRULE:FREQ=HOURLY;INTERVAL=1
+  dev:
+    schedules:
+      SCHRODERS_inventory_node_push_daily:
+        unified_job_template:  SCHRODERS_inventory_node_push
+        rrule:  DTSTART;TZID=Europe/London:20201204T070000 RRULE:FREQ=DAILY;INTERVAL=1
+      UNIX_consistent-dev_poc:
+        rrule: DTSTART;TZID=Europe/London:20200826T120000 RRULE:FREQ=DAILY;INTERVAL=1
+        unified_job_template: UNIX_consistent        
+        enabled: false
+      UNIX_inventory_refresh_hourly:  
+        rrule: DTSTART;TZID=Europe/London:20201204T100000 RRULE:FREQ=MINUTELY;INTERVAL=30
+        unified_job_template: UNIX_inventory_refresh
+    
+     

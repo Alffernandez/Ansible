@@ -1,0 +1,50 @@
+# Available options https://docs.ansible.com/ansible/latest/collections/awx/awx/tower_project_module.html#ansible-collections-awx-awx-tower-project-module
+
+ansible_tower_config:
+  default:
+    projects:
+      SCHRODERS_INTERNAL_sdrcompute_terraform: &project-SCHRODERS_INTERNAL_sdrcompute-terraform
+        organization: SCHRODERS_INTERNAL
+        description: Schroders Compute v2
+        scm_credential: GIT_z_unixadm_prd
+        scm_url: git@github.schroders.com:Schroders/sdrcompute-terraform.git
+        scm_clean: True
+        scm_update_on_launch: False # Too many concurrent builds might cause issues, revert to manual updates
+      SCHRODERS_INTERNAL_ansible_unix: &project-SCHRODERS_INTERNAL_ansible_unix
+        organization: SCHRODERS_INTERNAL
+        description: UNIX Ansible CM 
+        scm_credential: GIT_z_unixadm_prd
+        scm_url: git@github.schroders.com:Schroders/ansible-unix.git
+        scm_clean: True
+        scm_update_cache_timeout: 3600
+        scm_update_on_launch: True
+      SCHRODERS_INTERNAL_unix_local_scripts: &project-SCHRODERS_INTERNAL_unix_local_scripts
+        organization: SCHRODERS_INTERNAL
+        description: UNIX Local Scripts
+        scm_credential: GIT_z_unixadm_prd
+        scm_url: git@github.schroders.com:Schroders/unix-local-scripts.git
+        scm_clean: True
+        scm_update_cache_timeout: 3600
+        scm_update_on_launch: True
+  prd:
+    projects:
+      SCHRODERS_INTERNAL_sdrcompute_terraform:
+        <<: *project-SCHRODERS_INTERNAL_sdrcompute-terraform
+        scm_branch: master
+      SCHRODERS_INTERNAL_ansible_unix:
+        <<: *project-SCHRODERS_INTERNAL_ansible_unix
+        scm_branch: master
+      SCHRODERS_INTERNAL_unix_local_scripts:
+        <<: *project-SCHRODERS_INTERNAL_unix_local_scripts
+        scm_branch: master
+  dev:
+    projects:
+      SCHRODERS_INTERNAL_sdrcompute_terraform:
+        <<: *project-SCHRODERS_INTERNAL_sdrcompute-terraform
+        scm_branch: development
+      SCHRODERS_INTERNAL_ansible_unix:
+        <<: *project-SCHRODERS_INTERNAL_ansible_unix
+        scm_branch: development
+      SCHRODERS_INTERNAL_unix_local_scripts:
+        <<: *project-SCHRODERS_INTERNAL_unix_local_scripts
+        scm_branch: development

@@ -1,0 +1,49 @@
+---
+    
+
+- name: Update projects to discover new playbooks # This might be in use when new templates are defined
+  ansible.tower.tower_project_update: "{{ tower_module_defaults | combine ({ 'project' : item.key, 'wait' : 'False'}) }}"
+  loop: "{{ ansible_tower_config[TIER].projects|dict2items }}"
+  register: project_update_output
+  loop_control:
+    label:  "{{ item.key }}"
+
+- pause:  # Wait for jobs to complete, currently tower_job_wait does not work for Project jobs
+    seconds: 15
+
+# - name: Wait for project updates to complete
+#   ansible.tower.tower_job_wait: " {{ tower_module_defaults | combine ({ 'job_id' : item.id }) }}"
+#   loop: "{{ project_update_output.results }}"
+#   loop_control:
+#     label:  "{{ item.item.key }}"
+
+- name:  Deploy Ansible Tower Job Templates
+  ansible.tower.tower_job_template: "{{ tower_module_defaults | combine(item.value) | combine ({ 'name' : item.key}) }}"
+  loop: "{{ ansible_tower_config[TIER].job_templates|dict2items  }}" 
+  no_log: False
+  loop_control:
+    label:  "{{ item.key }}"
+  # when: item.key == "DBA_rubrik_full_backup-ua1mqb"  
+
+#   loop: "{{ ansible_tower_config[TIER].job_templates|dict2items  }}" 
+  # async: 60
+  # changed_when: False 
+  # poll: 0 
+  # register: async_templates
+  # loop_control:
+  #   label:  "{{ item.key }}"
+    
+# - name: Wait for template jobs to complete
+#   async_status:
+#     jid: "{{ item.ansible_job_id }}"
+#   register: job_async_templates
+#   retries: 20
+#   delay: 2
+#   until: job_async_templates.finished
+#   loop: "{{async_templates.results}}"
+#   loop_control: 
+#     label: "{{ item.item.key }}"
+
+# - debug: var=job_async_templates
+
+

@@ -1,0 +1,22 @@
+# Available options https://docs.ansible.com/ansible/latest/collections/awx/awx/tower_project_module.html#ansible-collections-awx-awx-tower-project-module
+
+ansible_tower_config:
+  default:
+    projects:
+      CPSRE_servicenow_mid: &CPSRE_servicenow_mid
+        organization: CPSRE
+        description: Cloud Servicenow Mid deployment
+        scm_credential: GIT_z_unixadm_prd
+        scm_url: git@github.schroders.com:Schroders/cpsre-servicenow-mid.git
+        scm_clean: True
+        scm_update_on_launch: True        
+  prd:
+    projects:
+      CPSRE_servicenow_mid:
+        <<: *CPSRE_servicenow_mid
+        scm_branch: master     
+  dev:
+    projects:
+      CPSRE_servicenow_mid:
+        <<: *CPSRE_servicenow_mid
+        scm_branch: development

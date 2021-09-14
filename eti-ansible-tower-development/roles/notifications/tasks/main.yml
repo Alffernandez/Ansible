@@ -1,0 +1,7 @@
+---
+    
+- name: Deploy Ansible Tower Notification Templates
+  ansible.tower.tower_notification_template: "{{ tower_module_defaults | combine(item.value) | combine ({ 'name' : item.key}) }}"
+  loop: "{{ ansible_tower_config[TIER].notification_templates|dict2items  }}" 
+  loop_control:
+    label:  "{{ item.key }}"

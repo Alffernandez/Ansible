@@ -1,0 +1,338 @@
+---
+
+# Search for a rrule value for an existing Schedule on the API https://tower-dev.schroders.com/api/v2/schedules/
+# for available parameter see https://docs.ansible.com/ansible/latest/collections/awx/awx/schedule_module.html#ansible-collections-awx-awx-schedule-module
+# Or use new query plugging
+
+ansible_tower_config:
+  default:
+    schedules:
+  prd:
+    schedules:
+      DBA_oracle_internal_audit_to_splunk-hourly:
+        unified_job_template: DBA_oracle_internal_audit_to_splunk
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'hour', start_date='2021-01-01 00:50:00', timezone='Europe/London',  every='1') }}"
+        enabled: True
+    #
+    # Backup schedules
+    #
+    DBA_rubrik_full_backup-CL2DMH_daily:
+        unified_job_template: DBA_rubrik_full_backup-CL2DMH
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 00:50:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-CL2MQB_daily:
+        unified_job_template: DBA_rubrik_full_backup-CL2MQB
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 04:50:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-CL2PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-CL2PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 01:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-CL3PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-CL3PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 02:20:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV1CCR_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV1CCR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 02:30:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV1DMH_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV1DMH
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 02:40:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV1EBS_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV1EBS
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 04:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV1FAH_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV1FAH
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 04:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV1MQB_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV1MQB
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 00:40:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV1PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV1PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 19:20:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV1PRF_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV1PRF
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 19:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV1QCM_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV1QCM
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 22:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV1RMS_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV1RMS
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 01:10:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV2EBS_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV2EBS
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 20:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV2PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV2PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 02:35:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV2PRF_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV2PRF
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 22:15:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV3EBS_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV3EBS
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 04:50:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV3PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV3PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 23:50:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV3PRF_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV3PRF
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 22:10:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV4PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV4PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 04:10:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV5PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV5PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 21:55:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV6PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV6PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 02:10:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-DV7PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-DV7PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 02:50:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PO4ODG_daily:
+        unified_job_template: DBA_rubrik_full_backup-PO4ODG
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 02:25:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDCCR01_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDCCR01
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 19:25:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDCCR02_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDCCR02
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 05:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDDMH01_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDDMH01
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 21:03:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDDMH02_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDDMH02
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 23:32:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDEBS01_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDEBS01
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 02:30:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDEBS02_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDEBS02
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 19:20:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDFAH01_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDFAH01
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 03:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDFAH02_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDFAH02
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 22:34:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDGRD01_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDGRD01
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 04:45:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDGRD02_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDGRD02
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 21:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDMQB01_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDMQB01
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 00:50:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDMQB02_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDMQB02
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 19:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDPBR01_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDPBR01
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 19:15:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDPBR02_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDPBR02
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 02:15:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDPRF01_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDPRF01
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 18:20:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDPRF02_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDPRF02
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 21:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDQCM01_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDQCM01
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 21:45:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDQCM02_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDQCM02
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 21:50:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDRMS01_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDRMS01
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 23:35:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-PRDRMS02_daily:
+        unified_job_template: DBA_rubrik_full_backup-PRDRMS02
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 01:25:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-QA1DMH_daily:
+        unified_job_template: DBA_rubrik_full_backup-QA1DMH
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 19:30:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-QA1MQB_daily:
+        unified_job_template: DBA_rubrik_full_backup-QA1MQB
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 01:45:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-QA1PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-QA1PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 01:10:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-QA1PRF_daily:
+        unified_job_template: DBA_rubrik_full_backup-QA1PRF
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 19:30:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-QA2DMH_daily:
+        unified_job_template: DBA_rubrik_full_backup-QA2DMH
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 03:15:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-QA2MQB_daily:
+        unified_job_template: DBA_rubrik_full_backup-QA2MQB
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 02:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-QA2PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-QA2PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 02:30:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-QA2PRF_daily:
+        unified_job_template: DBA_rubrik_full_backup-QA2PRF
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 02:20:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-SP1PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-SP1PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 19:10:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-SP2PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-SP2PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 04:40:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS1DMH_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS1DMH
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 04:05:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS1EBS_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS1EBS
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 01:50:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS1FAH_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS1FAH
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 23:15:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS1PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS1PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 23:50:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS1PRF_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS1PRF
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 01:30:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS1QCM_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS1QCM
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 21:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS1RMS_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS1RMS
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 23:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS2CCR_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS2CCR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 20:20:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS2DMH_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS2DMH
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 18:05:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS2EBS_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS2EBS
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 20:10:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS2FAH_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS2FAH
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 23:55:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS2MQB_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS2MQB
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 00:30:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS2PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS2PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 19:40:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS2PRF_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS2PRF
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 19:50:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS2QCM_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS2QCM
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 21:15:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS2RMS_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS2RMS
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 23:12:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS3DMH_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS3DMH
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 00:10:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS3EBS_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS3EBS
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 22:40:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS3MQB_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS3MQB
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 20:10:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS3PBR_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS3PBR
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 03:30:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS3PRF_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS3PRF
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 01:20:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS3QCM_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS3QCM
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 21:30:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-TS3RMS_daily:
+        unified_job_template: DBA_rubrik_full_backup-TS3RMS
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-09 03:40:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-UA1EBS_daily:
+        unified_job_template: DBA_rubrik_full_backup-UA1EBS
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 22:30:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+    DBA_rubrik_full_backup-UA1MQB_daily:
+        unified_job_template: DBA_rubrik_full_backup-UA1MQB
+        rrule: "{{ query('ansible.tower.tower_schedule_rrule', 'day', start_date='2021-09-08 20:00:00', timezone='Europe/London',  every='1') }}"
+        enabled: False
+
+  # dev:
+  #   schedules:
+

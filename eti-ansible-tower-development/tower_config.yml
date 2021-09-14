@@ -1,0 +1,20 @@
+---
+- hosts: dev,prd,c_b
+  become: false
+  gather_facts: False
+  connection: local 
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  vars_files:  
+    - vars/vault.yml        
+  roles:
+    - { role: settings,          tags: ['settings']       }
+    - { role: security,          tags: ['security']       }
+    - { role: credentials,       tags: ['credentials']    } 
+    - { role: projects,          tags: ['projects']       } 
+    - { role: inventories,       tags: ['inventories']    } 
+    - { role: notifications,     tags: ['notifications']  } 
+    - { role: templates,         tags: ['templates']      }     
+    - { role: workflows,         tags: ['workflows']      }     
+    - { role: schedules,         tags: ['schedules']      }     
+    - { role: rbac,              tags: ['rbac']           }

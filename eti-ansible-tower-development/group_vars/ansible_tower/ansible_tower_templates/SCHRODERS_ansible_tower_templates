@@ -1,0 +1,346 @@
+---
+# For possible options see https://docs.ansible.com/ansible/latest/collections/awx/awx/job_template_module.html#ansible-collections-awx-awx-job-template-module
+ansible_tower_config:
+  default:
+    job_templates:
+      SCHRODERS_maintenance_window_setup: &template-SCHRODERS_maintenance_window_setup
+        description: Sets up device maintenance windows in LM/MS/BMC
+        inventory: UNIX_ansible_unix_inventory
+        credentials: 
+          - MACHINE_z_unixadm_prd
+          - VAULT_unix_ansible_vault
+        project: SCHRODERS_ansible_unix
+        playbook: playbooks/manage_maintenance_windows.yml
+        become_enabled: False
+        concurrent_jobs_enabled: True 
+        extra_vars:
+          maintenance_window_action: create
+        survey_enabled: True 
+        survey_spec:
+          name: ''
+          description: ''
+          spec:
+            - question_name: Device(s) to setup a maintenance window for, use FQDN and one per line
+              type: textarea
+              required: True
+              variable: survey_maintenance_window
+            - question_name: Add change, incident number or reason
+              required: True
+              type: text
+              variable: ticket
+            - question_name: Start Date 
+              question_description: 'Optional if duration is used, format DD/MM/YYYY HH:MM (24h format)' 
+              required: False
+              type: text
+              variable: start_date_time
+            - question_name: End Date 
+              question_description: 'Optional if duration is used, format DD/MM/YYYY HH:MM (24h format)'  
+              required: False
+              type: text
+              variable: end_date_time
+            - question_name: Select Timezone
+              question_description: 'Please select your region if you are not in London and using local time for the start and stop fields, if your time zone is not displayed please contact Enterprise Tooling' 
+              required: False
+              type: multiplechoice
+              variable: maintenance_window_timezone
+              default: "Europe/London"
+              choices: 
+                - "Europe/London"
+                - "Asia/Singapore"
+                - "America/New_York"
+                - "Australia/Sydney"
+                - "Europe/Luxembourg"
+                - "Europe/Zurich" 
+                - "Asia/Tokyo" 
+                - "Asia/Jakarta"
+            - question_name: Duration in minutes
+              question_description: If not provided it will default to 60 minutes, if start/end dates are provided duration is disregarded
+              required: False
+              type: text
+              variable: maintenance_window_duration
+              default: '60'
+      SCHRODERS_maintenance_window_setup_datasource_instance: &template-SCHRODERS_maintenance_window_setup_datasource_instance
+        description: maintenance_window devices LM/MS/BMC by Data Source and/or instance names/descriptions
+        inventory: UNIX_ansible_unix_inventory
+        credentials: 
+          - VAULT_eti_ansible_vault
+        project: SCHRODERS_eti_ansible_playbooks
+        playbook: playbooks/maintenance_window_setup/maintenance_window_setup.yml
+        become_enabled: False
+        concurrent_jobs_enabled: True 
+        custom_virtualenv: /opt/tower_venvs/SCHRODERS_python3/
+        survey_enabled: True 
+        survey_spec:
+          name: ''
+          description: ''
+          spec:
+            - question_name: Device(s) to setup a maintenance window for, use FQDN and one per line, needs to match display name in LogicMonitor
+              type: textarea
+              required: True
+              variable: maintenance_window_hosts
+            - question_name: List of Datasources, one per line, partial matches are allowed, case insensitive
+              type: textarea
+              required: True
+              variable: sdt_datasources
+            - question_name: (optional) List of instances, one per line, partial string matches against both the instance name and the instance description, if not declared the maintenance windows will be set against the entire data sources, case insensitive
+              type: textarea
+              required: False
+              variable: sdt_instances
+            - question_name: Add change, incident number or reason
+              required: True
+              type: text
+              variable: ticket
+            - question_name: Start Date 
+              question_description: 'Optional, defaults to the current time, format DD/MM/YYYY HH:MM (24h format)' 
+              required: False
+              type: text
+              variable: start_date_time
+            - question_name: End Date 
+              question_description: 'Optional, it defaults to 60 the duration field, format DD/MM/YYYY HH:MM (24h format)'  
+              required: False
+              type: text
+              variable: end_date_time
+            - question_name: Select Timezone
+              question_description: 'Please select your region if you are not in London and using local time for the start and stop fields, if your time zone is not displayed please contact Enterprise Tooling' 
+              required: False
+              type: multiplechoice
+              variable: maintenance_window_timezone
+              default: "Europe/London"
+              choices: 
+                - "Europe/London"
+                - "Asia/Singapore"
+                - "America/New_York"
+                - "Australia/Sydney"
+                - "Europe/Luxembourg"
+                - "Europe/Zurich" 
+                - "Asia/Tokyo" 
+                - "Asia/Jakarta"
+            - question_name: Duration in minutes
+              question_description: If not provided it will default to 60 minutes, if end date is provided, duration is disregarded
+              required: False
+              type: text
+              variable: maintenance_window_duration
+              default: '60'
+      SCHRODERS_execute_ldap_query: &template-SCHRODERS_execute_ldap_query
+        description: Runs ldap queries and sends results to a target (EDP/HDF)
+        inventory: UNIX_ansible_unix_inventory
+        credentials: 
+          - VAULT_eti_ansible_vault
+          - MACHINE_z_unixadm_prd          
+        project: SCHRODERS_eti_ansible_playbooks
+        playbook: playbooks/execute_ldap_query/execute_ldap_query.yml
+        become_enabled: False
+        concurrent_jobs_enabled: True 
+        custom_virtualenv: /opt/tower_venvs/SCHRODERS_python3/
+      SCHRODERS_maintenance_window_setup_folder: &template-SCHRODERS_maintenance_window_setup_folder
+        description: maintenance_window devices LM/MS/BMC by folder
+        inventory: UNIX_ansible_unix_inventory
+        credentials: 
+          - MACHINE_z_unixadm_prd
+          - VAULT_unix_ansible_vault
+        project: SCHRODERS_ansible_unix
+        playbook: playbooks/manage_maintenance_windows.yml
+        become_enabled: False
+        concurrent_jobs_enabled: True 
+        extra_vars:
+          maintenance_window_action: create
+          lm_maintenance_window_group_id: 10372 # TECHNICAL SERVICES/maintenance_windowS
+        survey_enabled: True 
+        survey_spec:
+          name: ''
+          description: ''
+          spec:
+            - question_name: Group name to setup a maintenance window for (only groups within the TECHNICAL SERVICES/maintenance_windowS folder, case sensitive)
+              type: text
+              required: True
+              variable: lm_group_name
+            - question_name: Add change, incident number or reason
+              required: True
+              type: text
+              variable: ticket
+            - question_name: Start Date 
+              question_description: 'Optional if duration is used, format DD/MM/YYYY HH:MM (24h format)' 
+              required: False
+              type: text
+              variable: start_date_time
+            - question_name: End Date 
+              question_description: 'Optional if duration is used, format DD/MM/YYYY HH:MM (24h format)'  
+              required: False
+              type: text
+              variable: end_date_time
+            - question_name: Select Timezone
+              question_description: 'Please select your region if you are not in London and using local time for the start and stop fields, if your time zone is not displayed please contact Enterprise Tooling' 
+              required: False
+              type: multiplechoice
+              variable: maintenance_window_timezone
+              default: "Europe/London"
+              choices: 
+                - "Europe/London"
+                - "Asia/Singapore"
+                - "America/New_York"
+                - "Australia/Sydney"
+                - "Europe/Luxembourg"
+                - "Europe/Zurich" 
+                - "Asia/Tokyo" 
+                - "Asia/Jakarta"
+            - question_name: Duration in minutes
+              question_description: If not provided it will default to 60 minutes, if start/end dates are provided duration is disregarded
+              required: False
+              type: text
+              variable: maintenance_window_duration
+              default: '60'
+      SCHRODERS_maintenance_window_removal: &template-SCHRODERS_maintenance_window_removal
+        description: Remove maintenance window from devices in Moogsoft and Logicmonitor
+        inventory: UNIX_ansible_unix_inventory
+        credentials: 
+          - MACHINE_z_unixadm_prd
+          - VAULT_unix_ansible_vault
+        project: SCHRODERS_ansible_unix
+        playbook: playbooks/manage_maintenance_windows.yml
+        become_enabled: False
+        concurrent_jobs_enabled: True 
+        extra_vars:
+          maintenance_window_action: delete
+        survey_enabled: True 
+      SCHRODERS_maintenance_window_removal_datasource_instance: &template-SCHRODERS_maintenance_window_removal_datasource_instance
+        description: Remove maintenance window from devices datasource and instances in Logicmonitor
+        inventory: UNIX_ansible_unix_inventory
+        credentials: 
+          - VAULT_eti_ansible_vault
+        project: SCHRODERS_eti_ansible_playbooks
+        playbook: playbooks/maintenance_window_setup/maintenance_window_setup.yml
+        become_enabled: False
+        custom_virtualenv: /opt/tower_venvs/SCHRODERS_python3/
+        concurrent_jobs_enabled: True 
+        survey_enabled: True 
+        survey_spec:
+          name: ''
+          description: ''
+          spec:
+            - question_name: List of Device(s) to remove the maintenance window for, use FQDN and one per line, needs to match display name in LogicMonitor
+              type: textarea
+              required: True
+              variable: maintenance_window_hosts
+            - question_name: List of Datasources, one per line, partial matches are allowed, case insensitive
+              type: textarea
+              required: True
+              variable: sdt_datasources       
+            - question_name: (optional) List of Instances, one per line, partial string matches against both the instance name and the instance description, if not declared only maintenance windows set against entire datasources will be removed, case insensitive
+              type: textarea
+              required: False
+              variable: sdt_instances                    
+            - question_name: Remove All resource defined maintenance windows
+              question_description: 'False will remove only the last maintenance window added, True will remove all existing maintenance windows'
+              required: False
+              type: multiplechoice
+              variable: maintenance_window_remove_all
+              default: "False"
+              choices: 
+                - "True"
+                - "False"
+            - question_name: Reason for the maintenance window removal
+              required: True
+              type: text
+              variable: ticket
+      SCHRODERS_maintenance_window_removal_folder: &template-SCHRODERS_maintenance_window_removal_folder
+        description: Remove maintenance windows set on devices from Moogsoft and Logicmonitor
+        inventory: UNIX_ansible_unix_inventory
+        credentials: 
+          - MACHINE_z_unixadm_prd
+          - VAULT_unix_ansible_vault
+        project: SCHRODERS_ansible_unix
+        playbook: playbooks/manage_maintenance_windows.yml
+        become_enabled: False
+        concurrent_jobs_enabled: True 
+        extra_vars:
+          maintenance_window_action: delete
+          lm_maintenance_window_group_id: 10372 # TECHNICAL SERVICES/maintenance_window
+        survey_enabled: True 
+        survey_spec:
+          name: ''
+          description: ''
+          spec:
+            - question_name: Group name to remove from maintenance window (only groups within the TECHNICAL SERVICES/maintenance_windowS folder, case sensitive)
+              type: text
+              required: True
+              variable: lm_group_name
+            - question_name: Remove All resource defined maintenance windows
+              question_description: 'False will remove only the last maintenance window added, True will remove all existing maintenance windows'
+              required: False
+              type: multiplechoice
+              variable: maintenance_window_remove_all
+              default: "False"
+              choices: 
+                - "True"
+                - "False"
+            - question_name: Reason for maintenance window removal
+              required: True
+              type: text
+              variable: ticket
+  prd:
+    job_templates:
+      SCHRODERS_maintenance_window_setup:  
+        <<: *template-SCHRODERS_maintenance_window_setup
+      SCHRODERS_maintenance_window_setup_folder:  
+        <<: *template-SCHRODERS_maintenance_window_setup_folder        
+      SCHRODERS_maintenance_window_removal:  
+        <<: *template-SCHRODERS_maintenance_window_removal
+      SCHRODERS_maintenance_window_removal_folder:  
+        <<: *template-SCHRODERS_maintenance_window_removal_folder        
+      SCHRODERS_maintenance_window_setup_datasource_instance:  
+        <<: *template-SCHRODERS_maintenance_window_setup_datasource_instance        
+        extra_vars:
+          maintenance_window_action: create
+          branch: master
+      SCHRODERS_maintenance_window_removal_datasource_instance:  
+        <<: *template-SCHRODERS_maintenance_window_removal_datasource_instance        
+        extra_vars:
+          maintenance_window_action: delete
+          branch: master
+      SCHRODERS_execute_ldap_query_schroders:  
+        <<: *template-SCHRODERS_execute_ldap_query       
+        limit: lonphdfc01l001
+        extra_vars:
+          ldap_domain: schroders
+          branch: production       
+      SCHRODERS_execute_ldap_query_dmzschroders:  
+        <<: *template-SCHRODERS_execute_ldap_query       
+        limit: lonzinfhdfl001
+        extra_vars:
+          ldap_domain: dmzschroders
+          branch: production             
+  dev:
+    job_templates:
+      SCHRODERS_execute_ldap_query_schroders:  
+        <<: *template-SCHRODERS_execute_ldap_query       
+        limit: lonphdfc01l001
+        extra_vars:
+          ldap_domain: schroders
+          exec_arguments: -d 0 -s 
+          branch: development       
+      SCHRODERS_execute_ldap_query_dmzschroders:  
+        <<: *template-SCHRODERS_execute_ldap_query       
+        limit: lonzinfhdfl001
+        extra_vars:
+          ldap_domain: dmzschroders
+          exec_arguments: -d 0 -s 
+          branch: development       
+      SCHRODERS_maintenance_window_setup_datasource_instance:  
+        <<: *template-SCHRODERS_maintenance_window_setup_datasource_instance        
+        extra_vars:
+          maintenance_window_action: create
+          branch: development       
+      SCHRODERS_maintenance_window_removal_datasource_instance:  
+        <<: *template-SCHRODERS_maintenance_window_removal_datasource_instance        
+        extra_vars:
+          maintenance_window_action: delete
+          branch: development               
+      SCHRODERS_maintenance_window_setup:  
+        <<: *template-SCHRODERS_maintenance_window_setup
+      SCHRODERS_maintenance_window_setup_folder:  
+        <<: *template-SCHRODERS_maintenance_window_setup_folder
+      SCHRODERS_maintenance_window_removal:  
+        <<: *template-SCHRODERS_maintenance_window_removal
+      SCHRODERS_maintenance_window_removal_folder:  
+        <<: *template-SCHRODERS_maintenance_window_removal_folder
+  # c_b:

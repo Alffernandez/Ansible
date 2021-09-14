@@ -1,0 +1,29 @@
+---
+
+- debug: 
+    var: ansible_tower_config[TIER].projects
+    verbosity: 1 
+    
+- name: Deploy Ansible Tower Projects
+  ansible.tower.tower_project:
+    name: "{{ item.key }}"
+    description: "{{ item.value.description|default(item.key) }}" 
+    scm_type: "{{ item.value.scm_type|default('git') }}" 
+    scm_branch: "{{ item.value.scm_branch|default('master') }}" 
+    scm_credential: "{{ item.value.scm_credential }}"
+    scm_url: "{{ item.value.scm_url }}"
+    scm_clean: "{{ item.value.scm_clean|default(False) }}"
+    update_project: True 
+    organization: "{{ item.value.organization|default('Default') }}"
+    scm_delete_on_update: "{{ item.value.scm_delete_on_update|default(False) }}"
+    scm_update_on_launch: "{{ item.value.scm_update_on_launch|default(False) }}"
+    scm_update_cache_timeout:  "{{ item.value.scm_update_cache_timeout|default(0) }}"
+    tower_username: admin
+    tower_password: "{{ ansible_tower_admin }}" 
+    tower_host: "https://{{inventory_hostname}}/"
+    tower_verify_ssl: False
+  loop: "{{ ansible_tower_config[TIER].projects|dict2items }}" 
+  loop_control:
+    label: "{{ item.key }}"
+
+

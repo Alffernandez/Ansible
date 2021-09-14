@@ -1,0 +1,281 @@
+---
+# For possible options see https://docs.ansible.com/ansible/latest/collections/awx/awx/job_template_module.html#ansible-collections-awx-awx-job-template-module
+ansible_tower_config:
+  default:
+    job_templates:
+      ETI_ping_test:  &template-ETI_ping_test
+        description: Runs ping module with no priv escalation
+        inventory: UNIX_ansible_unix_inventory
+        credentials: 
+          - MACHINE_z_unixadm_prd
+        project: ETI_ansible_tower_tests
+        notification_templates_error:
+          - ETI_email
+        notification_templates_success:
+          - ETI_email
+        limit: solaris:linux:!notlive 
+        concurrent_jobs_enabled: True 
+        playbook: ping.yml
+      ETI_logstash_service_check:  &template-ETI_logstash_service_check
+        description: Checks logstash service is running
+        inventory: UNIX_ansible_unix_inventory
+        credentials: 
+          - MACHINE_z_unixadm_prd
+        concurrent_jobs_enabled: True 
+        limit: '!notlive:!lonc*:!lond*'
+        project: ETI_ansible_unix_apps
+        playbook: edp.yml 
+        job_tags: services
+      ETI_splunk_service_check:  &template-ETI_splunk_service_check
+        description: Checks splunk service is running
+        inventory: UNIX_ansible_unix_inventory
+        credentials: 
+          - VAULT_unix_ansible_vault  
+          - MACHINE_z_unixadm_prd
+        concurrent_jobs_enabled: True 
+        limit: '!notlive:!splunkdeployer:!lonc*:!zurpsplidxl002:splunk*'
+        project: ETI_ansible_unix_apps
+        playbook: spl_ent_test.yml 
+      ETI_eti_data_pipelines:  &template-ETI_eti_data_pipelines
+        inventory: UNIX_ansible_unix_inventory
+        ask_credential_on_launch: True 
+        concurrent_jobs_enabled: True 
+        credentials:
+          - ETI_DOCKER_jfa    
+          - MACHINE_z_unixadm_prd
+          - VAULT_ETI_data_pipelines
+        project: ETI_eti_data_pipelines
+        playbook: run_pipes.yml
+        become_enabled: True
+      ETI_splunk_cloud_update_hfd:  &template-ETI_splunk_cloud_update_hfd
+        description: Updates Splunk Cloud Heavy forwarders configuration
+        inventory: UNIX_ansible_unix_inventory
+        credentials: 
+          - VAULT_unix_ansible_vault  
+          - MACHINE_z_unixadm_prd
+        concurrent_jobs_enabled: True 
+        job_tags: spl_hfd_cloud
+        survey_enabled: True 
+        survey_spec:
+          name: ''
+          description: ''
+          spec:
+            - question_name: Update TAs
+              question_description: 'Update TAs'
+              required: False
+              type: multiplechoice
+              variable: TA
+              default: "False"
+              choices: 
+                - "True"
+                - "False"                  
+            - question_name: SERIAL
+              question_description: 'Concurrent servers (usually no more than 2)'
+              required: False
+              type: multiplechoice
+              variable: SERIAL
+              default: "1"
+              choices: 
+                - "0"
+                - "1"
+                - "2"                  
+                - "3"                  
+                - "4"                  
+        limit: splunkheavyforwarders_cloud
+        project: ETI_ansible_unix_apps
+        playbook: splunk_cloud.yml     
+  prd:
+    job_templates:
+      ETI_eti_data_pipelines-lm_splunk_sli: 
+        <<: *template-ETI_eti_data_pipelines
+        description: Availability Data extraction from Logicmonitor into Splunk 
+        limit: ansible-vip 
+        ask_extra_vars: True 
+        extra_vars:  
+          build_branch: prd
+          datapipes: lm-splunk-sli
+          docker_debug: False 
+      ETI_eti_data_pipelines-isilon-splunk-av: 
+        <<: *template-ETI_eti_data_pipelines
+        description: Isilon AV threat reports into Splunk 
+        limit: ansible-vip 
+        ask_extra_vars: True 
+        notification_templates_error:
+          - ETI_INCIDENT_WARNING_LOW
+        notification_templates_success:
+          - ETI_INCIDENT_WARNING_LOW        
+        extra_vars:  
+          build_branch: prd
+          datapipes: isilon-splunk-av
+          docker_debug: False 
+      ETI_eti_data_pipelines-cmdb-lm-lifecycle-update: 
+        <<: *template-ETI_eti_data_pipelines
+        description: Updates LM with CMDB details
+        limit: ansible-vip 
+        ask_extra_vars: True 
+        extra_vars:  
+          build_branch: prd
+          comment: remove -t while investigating doBuildTrees permission issue
+          datapipes: cmdb-lm-lifecycle
+          docker_debug: False 
+          docker_command:
+            prd: ./cmdb_lm_extract.py --env prod --dockerEnv -d 1 -f lm_cmdb_rules.yml --doUpdate
+          lm_env: prod          
+      ETI_eti_data_pipelines-lm_splunk_lookups: 
+        <<: *template-ETI_eti_data_pipelines
+        description: Pulls data from Logicmonitor to create lookup tables in Splunk 
+        limit: ansible-vip 
+        ask_extra_vars: True 
+        extra_vars:  
+          build_branch: prd
+          datapipes: lm-splunk-lookups
+          docker_debug: False 
+      ETI_eti_data_pipelines-lm_sql_capacity:
+        description: Capacity Data extraction from Logicmonitor into SQL server
+        <<: *template-ETI_eti_data_pipelines
+        limit: ansible-vip 
+        ask_extra_vars: True 
+        notification_templates_error:
+          - ETI_INCIDENT_WARNING_LOW
+          - ETI_email
+        notification_templates_success:
+          - ETI_INCIDENT_WARNING_LOW
+        extra_vars:  
+          docker_debug: False
+          build_branch: prd
+          datapipes:  lm-sql-capacity
+          cap_tier: prd
+      ETI_eti_data_pipelines-statseeker-splunk-sli:
+        <<: *template-ETI_eti_data_pipelines
+        description: ETI_eti_data_pipelines-statseeker-splunk-sli
+        limit: ansible-vip 
+        ask_extra_vars: True 
+        notification_templates_error:
+          - ETI_INCIDENT_WARNING_LOW
+          - ETI_email
+        notification_templates_success:
+          - ETI_INCIDENT_WARNING_LOW
+        extra_vars:  
+          docker_debug: False
+          build_branch: prd
+          datapipes: statseeker-splunk-sli
+      ETI_eti_data_pipelines-lm_splunk_maintenance_windows:
+        <<: *template-ETI_eti_data_pipelines
+        description: SDTs schedule data from Logicmonitor into Splunk
+        ask_extra_vars: True 
+        limit: ansible-vip 
+        notification_templates_error:
+          - ETI_INCIDENT_WARNING_LOW
+          - ETI_email
+        extra_vars:  
+          docker_debug: False
+          build_branch: prd
+          datapipes: lm-splunk-maintenance_windows
+      ETI_logstash_service_check:
+        <<: *template-ETI_logstash_service_check
+      ETI_ping_test:
+        <<: *template-ETI_ping_test
+      ETI_splunk_service_check:
+        <<: *template-ETI_splunk_service_check
+      ETI_splunk_cloud_update_hfd:
+        <<: *template-ETI_splunk_cloud_update_hfd
+  dev:
+    job_templates:
+      ETI_eti_data_pipelines-isilon-splunk-av: 
+        <<: *template-ETI_eti_data_pipelines
+        description: Isilon AV threat reports into Splunk 
+        limit: ansible-vip 
+        ask_extra_vars: True 
+        extra_vars:  
+          build_branch: dev
+          datapipes: isilon-splunk-av
+          docker_debug: False
+      ETI_eti_data_pipelines-lm_splunk_sli:
+        <<: *template-ETI_eti_data_pipelines
+        description: Availability Data extraction from Logicmonitor into Splunk 
+        limit: ansible-vip
+        ask_extra_vars: True 
+        extra_vars:   
+          docker_debug: False
+          build_branch: dev
+          datapipes: lm-splunk-sli
+      ETI_eti_data_pipelines-statseeker-splunk-sli:
+        <<: *template-ETI_eti_data_pipelines
+        description: ETI_eti_data_pipelines-statseeker-splunk-sli
+        limit: ansible-vip 
+        ask_extra_vars: True 
+        extra_vars:  
+          docker_debug: False
+          build_branch: dev
+          datapipes: statseeker-splunk-sli          
+      ETI_eti_data_pipelines-lm_splunk_lookups: 
+        <<: *template-ETI_eti_data_pipelines
+        description: Pulls data from Logicmonitor to create lookup tables in Splunk 
+        limit: ansible-vip 
+        ask_extra_vars: True 
+        extra_vars:  
+          docker_debug: False
+          build_branch: dev
+          datapipes: lm-splunk-lookups
+      ETI_eti_data_pipelines-cmdb-lm-lifecycle-add-delete: 
+        <<: *template-ETI_eti_data_pipelines
+        description: Updates LM with CMDB details
+        limit: ansible-vip 
+        ask_extra_vars: True 
+        extra_vars:  
+          build_branch: dev
+          comment: remove -t while investigating doBuildTrees permission issue
+          datapipes: cmdb-lm-lifecycle
+          docker_debug: False 
+          docker_command:
+            dev: >-
+              ./cmdb_lm_extract.py -e prod -E -d 1 -f lm_cmdb_rules.yml --doUpdate --doAdd
+              --doDelete -c cmdb_ci_linux_server -c cmdb_ci_win_server -c
+              cmdb_ci_esx_server -c cmdb_ci_net_app_host -c cmdb_ci_solaris_server
+          lm_env: prod
+      ETI_eti_data_pipelines-cmdb-lm-lifecycle-update-dev:
+        <<: *template-ETI_eti_data_pipelines
+        description: Updates LM with CMDB details Dev, no doBuildTrees 
+        limit: ansible-vip 
+        ask_extra_vars: True 
+        extra_vars:  
+          build_branch: dev
+          datapipes: cmdb-lm-lifecycle
+          docker_debug: False 
+          docker_command:
+            dev: ./cmdb_lm_extract.py --env prod --dockerEnv -d 1 -f lm_cmdb_rules.yml --doUpdate
+          lm_env: prod
+      ETI_eti_data_pipelines-lm_sql_capacity:
+        <<: *template-ETI_eti_data_pipelines
+        limit: ansible-vip
+        description: Capacity Data extraction from Logicmonitor into SQL server
+        ask_extra_vars: True 
+        extra_vars:   
+          datapipes:  lm-sql-capacity
+          docker_debug: False
+          build_branch: dev
+          cap_tier: dev
+      ETI_eti_data_pipelines-lm_splunk_maintenance_windows:
+        <<: *template-ETI_eti_data_pipelines
+        limit: ansible-vip
+        description: SDTs schedule data from Logicmonitor into Splunk
+        ask_extra_vars: True 
+        extra_vars:  
+          docker_debug: False
+          build_branch: dev
+          datapipes: lm-splunk-maintenance_windows
+      ETI_logstash_service_check:
+        <<: *template-ETI_logstash_service_check
+      ETI_ping_test:
+        <<: *template-ETI_ping_test
+      ETI_splunk_service_check:
+        <<: *template-ETI_splunk_service_check
+      ETI_splunk_cloud_update_hfd:
+        <<: *template-ETI_splunk_cloud_update_hfd
+
+  c_b:
+    job_templates:
+      ETI_ping_test:
+        <<: *template-ETI_ping_test
+        extra_vars:
+          test: test

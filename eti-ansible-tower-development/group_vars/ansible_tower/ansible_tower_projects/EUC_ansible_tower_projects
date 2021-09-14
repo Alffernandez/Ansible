@@ -1,0 +1,26 @@
+# Available options https://docs.ansible.com/ansible/latest/collections/awx/awx/tower_project_module.html#ansible-collections-awx-awx-tower-project-module
+
+ansible_tower_config:
+  default:
+    projects:
+      EUC_ansible_playbooks: &project-EUC_ansible_playbooks
+        organization: EUC
+        description: EUC_ansible_playbooks
+        scm_credential: GIT_EUC_ansible_playbooks
+        scm_url: git@github.schroders.com:Schroders/euc_ansible_playbooks.git
+        scm_clean: True
+        scm_update_cache_timeout: 0
+        scm_update_on_launch: True
+  prd:
+    projects:
+      EUC_ansible_playbooks:
+        <<: *project-EUC_ansible_playbooks
+        scm_branch: master
+  dev:
+    projects:
+      EUC_ansible_playbooks:
+        <<: *project-EUC_ansible_playbooks
+        scm_branch: development
+
+
+        

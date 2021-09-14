@@ -1,0 +1,305 @@
+---
+ansible_tower_config:
+  default:
+    notification_templates:
+      email_defaults: &email_defaults  
+        host: sysadm-ds1.london.schroders.com
+        username: ""
+        password: "" 
+        sender: Ansible Tower {{ TIER }} <GlobalTechnologyIPSEnterpriseTooling@schroders.com>
+        port: 25
+        use_tls: no
+        use_ssl: no
+      ETI_email:  &notification-ETI_email
+        description: Enterprise Tooling team email notification  
+        notification_type: email
+        organization: ETI
+        notification_configuration:
+          <<: *email_defaults
+          recipients:
+            - kenneth.modrego@schroders.com
+            - cosmin.cucu@Schroders.com
+            - robert.goodall@schroders.com
+            - mario.fonseca@schroders.com
+      DBA_email:  &notification-DBA_email
+        description: DBA team email notification
+        notification_type: email
+        organization: DBA
+        notification_configuration:
+          <<: *email_defaults
+          recipients:
+            - Jan.Kucharski@schroders.com
+      STORAGE_email: &notification-STORAGE_email
+        description: STORAGE team email notification
+        notification_type: email
+        organization: STORAGE
+        notification_configuration:
+          <<: *email_defaults
+          recipients:
+            - Richard.Wood@Schroders.com
+            - Grant.Spencer@schroders.com
+      ETI_email_robert:  &notification-ETI_email_robert
+        description: Robert Goodall email notification
+        notification_type: email
+        organization: ETI
+        notification_configuration:
+          <<: *email_defaults
+          recipients:
+            - robert.goodall@schroders.com
+      UNIX_email:  &notification-UNIX_email
+        description: Delete Snap shots on ESX older than 2 days
+        notification_type: email
+        organization: UNIX
+        notification_configuration:
+          <<: *email_defaults
+          recipients:
+            - paul.harris@schroders.com
+            - carles.guri@schroders.com
+            - steve.gibbs@schroders.com
+            - Wayne.Harte-Lovelace@Schroders.com
+            - Darren.Ledger@Schroders.com
+            - David.Bratby@Schroders.com
+      UNIX_OPS_email:  &notification-UNIX_OPS_email
+        description: UNIX  team email notification  
+        notification_type: email
+        organization: UNIX
+        notification_configuration:
+          <<: *email_defaults
+          recipients:
+            - Wayne.Harte-Lovelace@Schroders.com
+            - Darren.Ledger@Schroders.com
+            - David.Bratby@Schroders.com
+      ETI_INCIDENT_WARNING_LOW:  &notification-ETI_INCIDENT_WARNING_LOW
+        description: Creates incidents through Splunk and Moogsoft in Servicenow
+        notification_type: webhook
+        organization: ETI
+        notification_configuration:
+          url:  "http://lonphdfc01.london.schroders.com:7001"
+          disable_ssl_verification: True
+          http_method: POST
+          headers:
+            Content-Type: "application/json"
+      UNIX_INC_LOW:  &notification-UNIX_INC_LOW
+        description: Creates incidents on unix queue 
+        notification_type: webhook
+        organization: UNIX
+        notification_configuration:
+          url:  "http://lonphdfc01.london.schroders.com:7001"
+          disable_ssl_verification: True
+          http_method: POST
+          headers: 
+            Content-Type: "application/json"
+      SCHRODERS_Splunk:  &notification-SCHRODERS_Splunk
+        description: No description so far
+        notification_type: webhook
+        organization: SCHRODERS
+        notification_configuration:
+          url:  "http://lonphdfc01.london.schroders.com:7001"
+          disable_ssl_verification: True
+          http_method: POST
+          headers: 
+            Content-Type: "application/json"
+        messages:
+          started:
+            message: "{{ '{{ job_metadata }}' }}"            
+          success:
+            message: "{{ '{{ job_metadata }}' }}"
+          error:
+            message: "{{ '{{ job_metadata }}' }}"
+          
+  prd:
+    notification_templates:
+      ETI_email:
+        <<: *notification-ETI_email
+      UNIX_OPS_email:  
+        <<: *notification-UNIX_OPS_email  
+      UNIX_email:
+        <<: *notification-UNIX_email
+      STORAGE_email:
+        <<: *notification-STORAGE_email        
+      SCHRODERS_Splunk:
+        <<: *notification-SCHRODERS_Splunk
+      UNIX_INC_LOW:  
+        <<: *notification-UNIX_INC_LOW
+        messages:
+          success:
+            body: !unsafe | 
+              {   
+                "tower_source"  : "Ansible Tower Prd", 
+                "itag"          : "tower_notifications",
+                "started"       : "{{ job.started }}",
+                "finished"      : "{{ job.finished }}",
+                "status"        : "{{ job.status }}",
+                "name"          : "{{ job.name }}",
+                "url"           : "{{ url }}", 
+                "friendly_name" : "{{ job_friendly_name }}",
+                "created_by"    : "{{ (job.summary_fields.created_by|default()).username|default(job.launch_type) }}",
+                "project"       : "{{ ((job.summary_fields|default()).project|default()).name|default('unknown') }}",
+                "playbook"      : "{{ job.playbook }}",
+                "severity"      : "clear",
+                "service"       : "Ansible (Production)",
+                "ResolverGroup" : "OPS HOSTING UNIX",
+                "id"            : "{{ job.id }}"
+              }
+          error:
+            body: !unsafe | 
+              {   
+                "tower_source"  : "Ansible Tower Prd", 
+                "itag"          : "tower_notifications",
+                "started"       : "{{ job.started }}",
+                "finished"      : "{{ job.finished }}",
+                "status"        : "{{ job.status }}",
+                "name"          : "{{ job.name }}",
+                "url"           : "{{ url }}", 
+                "friendly_name" : "{{ job_friendly_name }}",
+                "created_by"    : "{{ (job.summary_fields.created_by|default()).username|default(job.launch_type) }}",
+                "project"       : "{{ ((job.summary_fields|default()).project|default()).name|default('unknown') }}",
+                "playbook"      : "{{ job.playbook }}",
+                "severity"      : "warning",
+                "service"       : "Ansible (Production)",
+                "ResolverGroup" : "OPS HOSTING UNIX",
+                "id"            : "{{ job.id }}"
+              }        
+      ETI_INCIDENT_WARNING_LOW:
+        <<: *notification-ETI_INCIDENT_WARNING_LOW
+        messages:
+          success:
+            body: !unsafe | 
+              {   
+                "tower_source"  : "Ansible Tower Prd", 
+                "itag"          : "tower_notifications",
+                "started"       : "{{ job.started }}",
+                "finished"      : "{{ job.finished }}",
+                "status"        : "{{ job.status }}",
+                "name"          : "{{ job.name }}",
+                "url"           : "{{ url }}", 
+                "friendly_name" : "{{ job_friendly_name }}",
+                "created_by"    : "{{ (job.summary_fields.created_by|default()).username|default(job.launch_type) }}",
+                "project"       : "{{ ((job.summary_fields|default()).project|default()).name|default('unknown') }}",
+                "playbook"      : "{{ job.playbook }}",
+                "severity"      : "clear",
+                "service"       : "Ansible (Production)",
+                "ResolverGroup" : "OPS ENTERPRISE TOOLING",
+                "id"            : "{{ job.id }}"
+              }
+          error:
+            body: !unsafe | 
+              {   
+                "tower_source"  : "Ansible Tower Prd", 
+                "itag"          : "tower_notifications",
+                "started"       : "{{ job.started }}",
+                "finished"      : "{{ job.finished }}",
+                "status"        : "{{ job.status }}",
+                "name"          : "{{ job.name }}",
+                "url"           : "{{ url }}", 
+                "friendly_name" : "{{ job_friendly_name }}",
+                "created_by"    : "{{ (job.summary_fields.created_by|default()).username|default(job.launch_type) }}",
+                "project"       : "{{ ((job.summary_fields|default()).project|default()).name|default('unknown') }}",
+                "playbook"      : "{{ job.playbook }}",
+                "severity"      : "warning",
+                "service"       : "Ansible (Production)",
+                "ResolverGroup" : "OPS ENTERPRISE TOOLING",
+                "id"            : "{{ job.id }}"
+              }
+
+  dev: &workflows_dev
+    notification_templates:
+      STORAGE_email:
+        <<: *notification-STORAGE_email 
+      ETI_INCIDENT_WARNING_LOW_QA:
+        <<: *notification-ETI_INCIDENT_WARNING_LOW
+        messages:
+          success:
+            body: !unsafe | 
+              {   
+                "tower_source"  : "Ansible Tower Dev", 
+                "itag"          : "tower_notifications",
+                "started"       : "{{ job.started }}",
+                "finished"      : "{{ job.finished }}",
+                "status"        : "{{ job.status }}",
+                "name"          : "{{ job.name }}",
+                "url"           : "{{ url }}", 
+                "friendly_name" : "{{ job_friendly_name }}",
+                "created_by"    : "{{ job.summary_fields.created_by.username }}",
+                "project"       : "{{ job.summary_fields.project.name }}",
+                "playbook"      : "{{ job.playbook }}",
+                "severity"      : "clear",
+                "service"       : "Ansible (Dev)",
+                "ResolverGroup" : "OPS ENTERPRISE TOOLING",
+                "id"            : "{{ job.id }}"
+              }
+          error:
+            body: !unsafe | 
+              {   
+                "tower_source"  : "Ansible Tower Dev", 
+                "itag"          : "tower_notifications",
+                "started"       : "{{ job.started }}",
+                "finished"      : "{{ job.finished }}",
+                "status"        : "{{ job.status }}",
+                "name"          : "{{ job.name }}",
+                "url"           : "{{ url }}", 
+                "friendly_name" : "{{ job_friendly_name }}",
+                "created_by"    : "{{ (job.summary_fields.created_by|default()).username|default(job.launch_type) }}",
+                "project"       : "{{ ((job.summary_fields|default()).project|default()).name|default('unknown') }}",
+                "playbook"      : "{{ job.playbook }}",
+                "severity"      : "warning",
+                "service"       : "Ansible (Dev)",
+                "ResolverGroup" : "OPS ENTERPRISE TOOLING",
+                "id"            : "{{ job.id }}"
+              }
+      ETI_email:
+        <<: *notification-ETI_email
+      UNIX_OPS_email:  
+        <<: *notification-UNIX_OPS_email  
+      UNIX_INC_LOW_QA:  
+        <<: *notification-UNIX_INC_LOW
+        messages:
+          success:
+            body: !unsafe | 
+              {   
+                "tower_source"  : "Ansible Tower Dev", 
+                "itag"          : "tower_notifications",
+                "started"       : "{{ job.started }}",
+                "finished"      : "{{ job.finished }}",
+                "status"        : "{{ job.status }}",
+                "name"          : "{{ job.name }}",
+                "url"           : "{{ url }}", 
+                "friendly_name" : "{{ job_friendly_name }}",
+                "created_by"    : "{{ (job.summary_fields.created_by|default()).username|default(job.launch_type) }}",
+                "project"       : "{{ ((job.summary_fields|default()).project|default()).name|default('unknown') }}",
+                "playbook"      : "{{ job.playbook }}",
+                "severity"      : "clear",
+                "service"       : "Ansible (Dev)",
+                "ResolverGroup" : "OPS HOSTING UNIX",
+                "id"            : "{{ job.id }}"
+              }
+          error:
+            body: !unsafe | 
+              {   
+                "tower_source"  : "Ansible Tower Dev", 
+                "itag"          : "tower_notifications",
+                "started"       : "{{ job.started }}",
+                "finished"      : "{{ job.finished }}",
+                "status"        : "{{ job.status }}",
+                "name"          : "{{ job.name }}",
+                "url"           : "{{ url }}", 
+                "friendly_name" : "{{ job_friendly_name }}",
+                "created_by"    : "{{ (job.summary_fields.created_by|default()).username|default(job.launch_type) }}",
+                "project"       : "{{ ((job.summary_fields|default()).project|default()).name|default('unknown') }}",
+                "playbook"      : "{{ job.playbook }}",
+                "severity"      : "warning",
+                "service"       : "Ansible (Dev)",
+                "ResolverGroup" : "OPS HOSTING UNIX",
+                "id"            : "{{ job.id }}"
+              }
+
+      SCHRODERS_Splunk:
+        <<: *notification-SCHRODERS_Splunk
+      ETI_email_robert:
+        <<: *notification-ETI_email_robert
+      DBA_email:
+        <<: *notification-DBA_email
+
+  c_b:
+    <<: *workflows_dev
+     

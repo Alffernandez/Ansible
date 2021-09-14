@@ -1,0 +1,11 @@
+[prd]
+tower.schroders.com TIER=prd
+[dev]
+tower-dev.schroders.com TIER=dev
+[c_b]
+lonctwrc01l001.london.schroders.com TIER=c_b
+
+[ansible_tower:children]
+dev
+prd
+c_b

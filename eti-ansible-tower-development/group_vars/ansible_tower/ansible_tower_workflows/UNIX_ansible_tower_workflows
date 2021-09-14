@@ -1,0 +1,54 @@
+---
+# For examples
+# https://docs.ansible.com/ansible/latest/collections/awx/awx/workflow_job_template_module.html#ansible-collections-awx-awx-workflow-job-template-module
+# https://docs.ansible.com/ansible/latest/collections/awx/awx/workflow_job_template_node_module.html#ansible-collections-awx-awx-workflow-job-template-node-module
+
+ansible_tower_config:
+  default:
+    workflow_job_templates:
+      UNIX_inventory_refresh:  &UNIX_inventory_refresh        
+        description: Refreshes the project's based and CMDB based inventory sources for UNIX  
+        organization: SCHRODERS
+  prd:
+    workflow_job_templates:
+      UNIX_inventory_refresh:
+        <<: *UNIX_inventory_refresh
+    workflow_nodes:
+      UNIX_ansible_unix_inventory_snow:
+        unified_job_template: UNIX_ansible_unix_inventory_snow
+        workflow_job_template: UNIX_inventory_refresh
+      UNIX_ansible_unix_inventory_git:
+        unified_job_template: UNIX_ansible_unix_inventory_git
+        workflow_job_template: UNIX_inventory_refresh
+        success_nodes: [UNIX_ansible_unix_inventory_snow]
+      inventory_refresh_snow_clean:
+        unified_job_template: UNIX_ansible_unix_inventory_snow_clean
+        workflow_job_template: UNIX_inventory_refresh
+        success_nodes: [UNIX_ansible_unix_inventory_git]
+      inventory_project_refresh:
+        unified_job_template: UNIX_ansible_unix_inventory
+        workflow_job_template: UNIX_inventory_refresh
+        success_nodes: [inventory_refresh_snow_clean]    
+  dev: &workflows_dev
+    workflow_job_templates:
+      UNIX_inventory_refresh:
+        <<: *UNIX_inventory_refresh
+    workflow_nodes:
+      04_inventory_project_refresh:
+        unified_job_template: UNIX_ansible_unix_inventory
+        workflow_job_template: UNIX_inventory_refresh
+        success_nodes: [03_inventory_refresh_snow_clean]
+      03_inventory_refresh_snow_clean:
+        unified_job_template: UNIX_ansible_unix_inventory_snow_clean
+        workflow_job_template: UNIX_inventory_refresh
+        success_nodes: [02_UNIX_ansible_unix_inventory_git]
+      02_UNIX_ansible_unix_inventory_git:
+        unified_job_template: UNIX_ansible_unix_inventory_git
+        workflow_job_template: UNIX_inventory_refresh
+        success_nodes: [01_UNIX_ansible_unix_inventory_snow]
+      01_UNIX_ansible_unix_inventory_snow:
+        unified_job_template: UNIX_ansible_unix_inventory_snow
+        workflow_job_template: UNIX_inventory_refresh
+  c_b:
+    <<: *workflows_dev
+     

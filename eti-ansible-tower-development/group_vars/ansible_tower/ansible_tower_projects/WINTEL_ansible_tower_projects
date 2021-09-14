@@ -1,0 +1,16 @@
+# Available options https://docs.ansible.com/ansible/latest/collections/awx/awx/tower_project_module.html#ansible-collections-awx-awx-tower-project-module
+
+ansible_tower_config:
+  dev:
+    projects:
+      WINTEL_sdrcompute_terraform:
+        description: Schroders Compute v2
+        scm_credential: GIT_z_unixadm_prd
+        scm_url: git@github.schroders.com:Schroders/sdrcompute-terraform.git
+        scm_clean: True
+        scm_update_cache_timeout: 0
+        scm_update_on_launch: True
+        organization: WINTEL
+        scm_branch: development
+
+        
