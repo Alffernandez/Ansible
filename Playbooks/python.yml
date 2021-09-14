@@ -10,7 +10,7 @@
         organization: "Default"
         inventory: "Demo Inventory"
         project: "GitHub Project"
-        playbook: "copy_module.yml"
+        playbook: "test.yml"
         credentials:
           - "Demo Credential"
         state: "present"
