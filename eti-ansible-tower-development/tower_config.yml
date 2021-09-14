@@ -4,9 +4,7 @@
   gather_facts: False
   connection: local 
   vars:
-    ansible_python_interpreter: /usr/bin/python3
-  vars_files:  
-    - vars/vault.yml        
+    ansible_python_interpreter: /usr/bin/python3       
   roles:
     - { role: settings,          tags: ['settings']       }
     - { role: security,          tags: ['security']       }
