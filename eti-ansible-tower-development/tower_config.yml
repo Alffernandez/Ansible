@@ -1,5 +1,5 @@
 ---
-- hosts: dev,prd,c_b
+- hosts: all
   become: false
   gather_facts: False
   connection: local 
