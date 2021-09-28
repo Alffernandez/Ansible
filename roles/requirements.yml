@@ -1,3 +1,4 @@
 ---
 - name: tower
-  src: https://github.com/Alffernandez/Ansible.git
+  src: git@github.com:Alffernandez/Ansible.git
+  scm: git
