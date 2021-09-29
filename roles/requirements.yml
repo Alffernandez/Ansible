@@ -3,5 +3,5 @@
   src: https://github.com/Alffernandez/Ansible.git
   scm: git
   
-- name: geerlingguy.java
+  name: geerlingguy.java
   version: 1.9.6
