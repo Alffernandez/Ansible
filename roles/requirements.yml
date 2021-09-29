@@ -1,6 +1,2 @@
 ---
-- name: tower
-  src: https://github.com/Alffernandez/Ansible.git
-  scm: git
-
-  name: davidban77.gns3
+- name: davidban77.gns3
