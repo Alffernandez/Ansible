@@ -3,5 +3,5 @@
   src: https://github.com/Alffernandez/Ansible.git
   scm: git
 
-  name: davidban77.gns3
-  source: https://galaxy.ansible.com
+  name: geerlingguy.java
+  version: 1.9.6
