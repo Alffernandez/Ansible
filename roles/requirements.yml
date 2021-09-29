@@ -1,2 +1,4 @@
 ---
 - name: davidban77.gns3
+  version: latest
+  source: https://galaxy.ansible.com
