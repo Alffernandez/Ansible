@@ -5,3 +5,4 @@
   
   name: geerlingguy.java
   version: 1.9.6
+  source: https://galaxy.ansible.com
