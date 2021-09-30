@@ -1,3 +1,4 @@
 collections:
-  - name: https://github.com/Alffernandez/Ansible.git
+  - name: ansible.tower
     type: git
+    source: https://github.com/Alffernandez/Ansible.git
