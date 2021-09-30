@@ -1,4 +1,3 @@
 collections:
-  - name: ansible.tower
+  - name: https://github.com/geerlingguy/ansible-collection-k8s.git
     type: git
-    source: https://github.com/Alffernandez/Ansible.git
