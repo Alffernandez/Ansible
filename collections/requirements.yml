@@ -1,4 +1,2 @@
 collections:
-  - name: geerlingguy.k8s
-    type: git
-    source: https://github.com/geerlingguy/ansible-collection-k8s.git
+  - name: https://github.com/geerlingguy/ansible-collection-k8s.git
