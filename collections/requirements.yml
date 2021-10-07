@@ -1,3 +1,0 @@
-collections:
-  - name: https://github.com/geerlingguy/community.kubernetes.git
-    type: git
