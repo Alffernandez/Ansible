@@ -1,0 +1,8 @@
+- hosts: all
+  tasks:
+    - name: Variables
+      shell: export
+      register: result
+      
+    - debug:
+        msg: "{{ result }}"

@@ -1,0 +1,18 @@
+---
+- hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Create/Modify Tower job template
+      ansible.tower.tower_job_template:
+        name: "Test"
+        job_type: "run"
+        organization: "Default"
+        inventory: "Demo Inventory"
+        project: "GitHub Project"
+        playbook: "Playbooks/test.yml"
+        credentials:
+          - "Demo Credential"
+        state: "present"
+        tower_config_file: "~/.tower_cli.cfg"
+        extra_vars: "level=1,channels=4,maxsize=16,retention=14,special=F,rubrik_version=5.0"

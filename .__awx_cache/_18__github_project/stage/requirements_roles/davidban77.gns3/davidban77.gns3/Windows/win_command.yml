@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+  
+     - win_copy:
+         src: /tmp/OpenSSH-Win64.zip
+         dest: C:\Users\Administrator\Downloads\OpenSSH-Win64.zip

@@ -1,0 +1,11 @@
+- name: schedule launcher
+  hosts: all
+  tasks:
+    - name: launch job {{ job_name }} using token without prompt for inventory
+      ansible.tower.tower_job_launch:
+        tower_password: "{{ password }}"
+        tower_username: "{{ username }}"
+        tower_host: "{{ tower_url }}"
+        tower_oauthtoken: "{{ tower_token }}"
+        job_template: "{{ job_name }}"
+        validate_certs: "no"
