@@ -1,4 +1,4 @@
 collections:
 - name: redhat.insight
   version: 1.0.4
-  source: https://cloud.redhat.com
+  source: http://cloud.redhat.com
