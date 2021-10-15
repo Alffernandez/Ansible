@@ -1,4 +1,3 @@
 collections:
 - name: redhat.insights
   version: 1.0.4
-  source: http://cloud.redhat.com
