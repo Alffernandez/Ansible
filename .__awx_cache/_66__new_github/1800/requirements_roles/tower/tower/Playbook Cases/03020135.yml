@@ -1,7 +1,0 @@
----
-- name: test for date and time
-  hosts: all
-  tasks:
-    - name: print system facts
-      debug:
-        var: ansible_facts
