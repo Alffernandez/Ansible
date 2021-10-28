@@ -1,3 +1,3 @@
 collections:
-  - name: geerlingguy.php_roles
-    version: 0.9.3
+  - name: ansible.tower
+    version: 3.7
