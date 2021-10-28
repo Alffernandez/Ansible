@@ -1,3 +1,4 @@
 collections:
   - name: ansible.tower
     version: 3.7.0
+    source: cloud.redhat.com
