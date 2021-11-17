@@ -5,7 +5,7 @@
 
   - name: become_user non root
     shell: 'whoami'
-    become_user: games  
+    become_user: alfonso  
 
   - name: become_user root
     shell: 'whoami'
