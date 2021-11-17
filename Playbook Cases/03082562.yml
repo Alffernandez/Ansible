@@ -1,10 +1,10 @@
 - hosts: all
+  become: yes
   tasks:
   - name: original user
     shell: 'whoami'
 
   - name: become_user non root
-    become: yes
     become_user: alfonso
     file:
         path: /tmp/alfonso.txt
