@@ -4,13 +4,9 @@
     shell: 'whoami'
 
   - name: become_user non root
-    become_user: alfonso
-    file:
-        path: /tmp/alfonso.txt
-        state: touch
+    shell: 'whoami'
+    become_user: alfonso  
 
   - name: become_user root
+    shell: 'whoami'
     become_user: root
-    file:
-        path: /tmp/root.txt
-        state: touch
