@@ -1,8 +1,7 @@
 ---
 - name: Open port 10050 on Zabbix agent
   hosts: all
-  become: yes
-
+  
   tasks:
   - name: Permit incoming connections on port 10050/tcp
     ansible.posix.firewalld:
