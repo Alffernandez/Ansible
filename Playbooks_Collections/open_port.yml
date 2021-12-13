@@ -9,4 +9,4 @@
       port: 10050/tcp
       permanent: yes
       zone: public
-      state: disabled
+      state: enabled
