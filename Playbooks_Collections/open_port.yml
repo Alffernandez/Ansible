@@ -8,4 +8,4 @@
       port: 10050/tcp
       permanent: yes
       zone: public
-      state: enabled
+      state: disabled
