@@ -1,10 +1,10 @@
 ---
 - hosts: all
   gather_facts: true
+  become: yes
 
   tasks:
   - name: Upgrade all yum packages
     yum:
-      name: "*"
+      name: vim
       state: latest
-    become: yes
