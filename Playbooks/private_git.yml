@@ -1,9 +1,14 @@
 ---
 - hosts: all
+  vars:
+    github:
+      gituser: '{{ lookup("env", "GIT_USERNAME") }}'
+      gitpassword: '{{ lookup("env", "GIT_PASSWORD") }}'
+      
   tasks:
     - name: Example clone of a single branch
       ansible.builtin.git:
-        repo: https://github.com/Alffernandez/private_test.git
+        repo: 'https://{{ gituser }}:{{ gitpassword }}@github.com/Alffernandez/private_test.git'
         dest: /tmp
         single_branch: yes
         version: main
