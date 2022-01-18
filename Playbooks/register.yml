@@ -1,6 +1,8 @@
 ---
 - name: Playbook for register
-  hosts: all
+  hosts: localhost
+  become: yes
+  
   tasks:
      - name: Uptime command
        command: uptime

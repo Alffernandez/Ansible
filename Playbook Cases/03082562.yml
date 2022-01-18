@@ -1,0 +1,16 @@
+- hosts: all
+  tasks:
+  - name: original user
+    shell: 'whoami'
+
+  - name: become_user non root
+    become_user: alfonso
+    file:
+        path: /tmp/alfonso.txt
+        state: touch
+
+  - name: become_user root
+    become_user: root
+    file:
+        path: /tmp/root.txt
+        state: touch
