@@ -6,4 +6,4 @@
     repo: https://github.com/Alffernandez/private_test.git
     dest: /tmp
     single_branch: yes
-    version: master
+    version: main
