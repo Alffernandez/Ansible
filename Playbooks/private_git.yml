@@ -10,5 +10,4 @@
       ansible.builtin.git:
         repo: 'https://{{ github.gituser }}:{{ github.gitpassword }}@github.com/Alffernandez/private_test.git'
         dest: /tmp
-        single_branch: yes
         version: main
