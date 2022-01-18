@@ -1,0 +1,9 @@
+---
+- hosts: all
+
+- name: Example clone of a single branch
+  ansible.builtin.git:
+    repo: https://github.com/Alffernandez/private_test.git
+    dest: /tmp
+    single_branch: yes
+    version: master
