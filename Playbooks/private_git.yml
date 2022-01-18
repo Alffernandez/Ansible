@@ -8,7 +8,7 @@
   tasks:
     - name: Example clone of a single branch
       ansible.builtin.git:
-        repo: 'https://{{ gituser }}:{{ gitpassword }}@github.com/Alffernandez/private_test.git'
+        repo: 'https://{{ github.gituser }}:{{ github.gitpassword }}@github.com/Alffernandez/private_test.git'
         dest: /tmp
         single_branch: yes
         version: main
