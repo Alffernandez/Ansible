@@ -18,4 +18,4 @@
         name:                             
           - "@redhat-ds:11"               
           - cockpit-dashboard             
-        state: rmeoved  
+        state: removed  
