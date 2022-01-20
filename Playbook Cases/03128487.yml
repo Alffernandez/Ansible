@@ -4,7 +4,8 @@
 
   vars:
     ds_packages:
-      - cockpit
+      - cockpit-dashboard
+      - "@redhat-ds:11"
 
   tasks:
     - name: 'Install DS and dependencies' 
@@ -15,5 +16,6 @@
     - name: 'Install DS and dependencies 2'
       ansible.builtin.dnf:                
         name:                             
-          - cockpit             
+          - cockpit
+          - "@redhat-ds:11"
         state: present  
