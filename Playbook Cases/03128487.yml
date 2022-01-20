@@ -5,17 +5,15 @@
   vars:
     ds_packages:
       - "@redhat-ds:11"
-      - cockpit-dashboard
 
   tasks:
     - name: 'Install DS and dependencies' 
       ansible.builtin.dnf:                
         name: "{{ ds_packages }}"         
-        state: removed                     
+        state: latest                     
                                       
     - name: 'Install DS and dependencies 2'
       ansible.builtin.dnf:                
         name:                             
           - "@redhat-ds:11"               
-          - cockpit-dashboard             
-        state: removed  
+        state: present  
