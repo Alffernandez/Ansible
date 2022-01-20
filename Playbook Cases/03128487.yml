@@ -11,11 +11,11 @@
     - name: 'Install DS and dependencies' 
       ansible.builtin.dnf:                
         name: "{{ ds_packages }}"         
-        state: latest                     
+        state: removed                     
                                       
     - name: 'Install DS and dependencies 2'
       ansible.builtin.dnf:                
         name:                             
           - "@redhat-ds:11"               
           - cockpit-dashboard             
-        state: present  
+        state: rmeoved  
