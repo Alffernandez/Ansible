@@ -2,9 +2,6 @@
 - hosts: localhost
   gather_facts: true
   become: yes
-  
-  vars:
-    ansible_sudo_pass: alfonso1234
 
   tasks:
   - name: Upgrade all yum packages
