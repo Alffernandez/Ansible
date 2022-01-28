@@ -1,0 +1,4 @@
+- hosts: localhost
+  tasks:
+  - debug:
+      msg: "{{ lookup('file', 'testfile.yaml') | from_yaml}}"
