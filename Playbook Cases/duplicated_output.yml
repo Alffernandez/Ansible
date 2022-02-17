@@ -1,0 +1,20 @@
+---
+- name: Testing collection usage
+  hosts: all
+
+  tasks:
+    - name: Test debug with Shortname
+      debug:
+        msg: "Shortname works"
+    - name: Test debug with FQCN
+      ansible.builtin.debug:
+        msg: "FQCN works}"
+
+    - name: Test2 at with shortname
+      at:
+        command: ls -d / >/dev/null
+        state: absent
+# - name: Test at with FQCN
+#   ansible.posix.at:
+#     command: ls -d / >/dev/null
+#     state: absent
