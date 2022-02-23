@@ -1,0 +1,14 @@
+---
+- name: say hello
+  hosts: all
+  gather_facts: yes
+  become: no
+
+  tasks:
+    - name: print hello world
+      debug:
+        msg: "Hello World!"
+        verbosity: 0
+    - name: Show Host name
+      debug:
+        var: ansible_hostname
