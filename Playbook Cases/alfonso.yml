@@ -4,3 +4,4 @@
       copy:
         src: "/tmp/test/kk.txt"
         dest: "/tmp/copy/"
+        remote_src: yes
