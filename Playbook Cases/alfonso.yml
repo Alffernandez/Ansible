@@ -3,4 +3,4 @@
     - name: Copy
       copy:
         src: "/tmp/test/*.txt"
-        dest: "/tmp/copy"
+        dest: "/tmp/copy/"
