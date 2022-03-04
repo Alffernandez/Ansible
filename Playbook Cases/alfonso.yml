@@ -1,6 +1,7 @@
 - hosts: all
   tasks:
-    - name: Copy svc_solar Perl scritps
+    - name: Copy
       copy:
-        src: "/var/tmp/project/test/"
-        dest: "/tmp/alfonso"
+        src: "/tmp/test/*.txt"
+        dest: "/tmp/copy"
+        remote_src: yes
