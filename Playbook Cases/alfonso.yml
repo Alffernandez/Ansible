@@ -4,3 +4,4 @@
       copy:
         src: "/opt/tower/kk.txt"
         dest: "/tmp/copy/"
+        remote_src: true
