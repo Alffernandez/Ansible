@@ -2,5 +2,5 @@
   tasks:
     - name: Copy
       copy:
-        src: "/tmp/test/Maricopa_Root_CA1-Intermed_CA1.crt"
+        src: "/tmp/test/*"
         dest: "/tmp/copy/"
