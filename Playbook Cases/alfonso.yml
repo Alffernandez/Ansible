@@ -2,5 +2,5 @@
   tasks:
     - name: Copy
       copy:
-        src: "/tmp/test/*"
+        src: "/tmp/test/*.crt"
         dest: "/tmp/copy/"
