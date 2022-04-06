@@ -6,7 +6,6 @@
     - name: Test debug with Shortname
       debug:
         msg: "Shortname works"
-      delegate_to: localhost
     - name: Test debug with FQCN
       ansible.builtin.debug:
         msg: "FQCN works}"
