@@ -10,10 +10,3 @@
       shell: awk '/^PermitEmptyPasswords/ {print $2}' /etc/ssh/sshd_config
       register: PermitEmptyPasswords
       changed_when: false
-
-    - name: Output from sshd_config
-      debug: 
-        msg: 
-          - PermitRootLogin {{ PermitRootLogin.stdout }}
-          - PermitEmptyPasswords {{ PermitEmptyPasswords.stdout }}
-      failed_when: "'without-password' not in PermitRootLogin.stdout or 'no' not in PermitEmptyPasswords.stdout"
