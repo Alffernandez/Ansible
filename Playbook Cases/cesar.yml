@@ -1,0 +1,7 @@
+---
+- name: Sleep command
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - command: "sleep 600"
