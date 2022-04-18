@@ -4,7 +4,6 @@
     - name: Read PermitRootLogin from sshd_config
       shell: awk '/^PermitRootLogin/ {print $2}' /etc/ssh/sshd_config
       register: PermitRootLogin
-      changed_when: false
 
     - name: Read PermitEmptyPasswords from sshd_config
       shell: awk '/^PermitEmptyPasswords/ {print $2}' /etc/ssh/sshd_config
