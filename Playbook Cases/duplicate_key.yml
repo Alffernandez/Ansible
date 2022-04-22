@@ -1,0 +1,8 @@
+- hosts: all
+  gather_facts: no
+  tasks:
+    - ansible.builtin.include_vars:
+        dir: /tmp/
+        files_matching: inventory.yml
+      tags:
+        - inventory_job_templates
