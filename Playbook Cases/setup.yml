@@ -4,5 +4,13 @@
     - name: Collect only facts returned by facter
       ansible.builtin.setup:
         gather_subset:
-          - 'all'
-          - 'any'
+        - '!all'
+        - '!any'
+        - facter
+
+    - name: Collect only selected facts
+      ansible.builtin.setup:
+        filter:
+        - 'ansible_distribution'
+        - 'ansible_machine_id'
+        - 'ansible_*_mb'
