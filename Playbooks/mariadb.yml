@@ -1,7 +1,6 @@
 ---
 - name: install and configure mariadb
   hosts: all
-  remote_user: "{{ vault_username }}"
   become_method: sudo
   become: yes
 
