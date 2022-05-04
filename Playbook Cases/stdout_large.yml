@@ -1,0 +1,5 @@
+- name: stdout_large
+  hosts: all
+  tasks:
+    - name: Execute the command in remote shell
+      ansible.builtin.shell: stdout.sh
