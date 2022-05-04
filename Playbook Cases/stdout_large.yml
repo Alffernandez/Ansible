@@ -5,9 +5,11 @@
       copy:
         src: files/stdout.sh
         dest: /tmp/stdout.sh
+        mode: 0777
     - name: copy 2 file
       copy:
         src: files/text.txt
         dest: /tmp/text.txt
+        mode: 0777
     - name: Execute the command in remote shell
       ansible.builtin.shell: /tmp/stdout.sh
