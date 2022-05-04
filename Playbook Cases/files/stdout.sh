@@ -1,3 +1,3 @@
 #!/bin/sh
 # This is a comment!
-cat text.txt
+cat /tmp/text.txt
