@@ -5,9 +5,9 @@
       copy:
         src: files/stdout.sh
         dest: /tmp/stdout.sh
-    - name: copy file
-       copy:
-         src: files/text.txt
-         dest: /tmp/text.txt
+    - name: copy 2 file
+      copy:
+        src: files/text.txt
+        dest: /tmp/text.txt
     - name: Execute the command in remote shell
       ansible.builtin.shell: /tmp/stdout.sh
