@@ -1,5 +1,13 @@
 - name: stdout_large
   hosts: all
   tasks:
+    - name: copy files
+      copy:
+        src: files/stdout.sh
+        dest: /tmp/stdout.sh
+    - name: copy file
+       copy:
+         src: files/text.txt
+         dest: /tmp/text.txt
     - name: Execute the command in remote shell
       ansible.builtin.shell: /tmp/stdout.sh
