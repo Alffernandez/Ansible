@@ -1,6 +1,5 @@
 ---
-dependencies:
-  - role: geerlingguy.java
+dependencies: []
 galaxy_info:
   role_name: docker
   author: geerlingguy
