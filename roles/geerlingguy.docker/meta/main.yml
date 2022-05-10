@@ -1,6 +1,8 @@
 ---
-dependencies: []
-galaxy_info:
+dependencies:
+  - role: geerlingguy.java
+  
+  galaxy_info:
   role_name: docker
   author: geerlingguy
   description: Docker for Linux.
