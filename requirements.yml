@@ -1,4 +1,0 @@
-collections:
-  - name: test.tower
-    version: 3.8.5
-    source: https://192.168.122.51/api/galaxy/content/published/
