@@ -2,5 +2,5 @@
   tasks:
     - name: Copy
       copy:
-        remote_src: "/tmp/test/test.txt"
+        src: "/tmp/test/test.txt"
         dest: "/tmp/copy/"
