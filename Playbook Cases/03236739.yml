@@ -2,7 +2,7 @@
 - name: collection test
   hosts: all
   
-  task:
+  tasks:
    - name: HPE Power off servers
      community.general.redfish_command:
        category: Systems
