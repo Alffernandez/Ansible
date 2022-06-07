@@ -1,12 +1,12 @@
 ---- 
-- name: collection test
+- name: Sleep command
   hosts: all
-  
+
   tasks:
-   - name: HPE Power off servers
-     community.general.redfish_command:
-       category: Systems
-       command: PowerForceOff
-       baseuri: "{{ hostvars[inventory_hostname]['bmc_address'] }}"
-       username: "{{ hostvars[inventory_hostname]['bmc_user'] }}"
-       password: "{{ hostvars[inventory_hostname]['bmc_password'] }}"
+  - name: HPE Power off servers
+    community.general.redfish_command:
+      category: System
+      command: PowerForceOff
+      baseuri: "{{ hostvars[inventory_hostname]['bmc_address'] }}"
+      username: "{{ hostvars[inventory_hostname]['bmc_user'] }}"
+      password: "{{ hostvars[inventory_hostname]['bmc_password'] }}"
