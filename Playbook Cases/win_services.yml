@@ -3,6 +3,6 @@
   hosts: all
   tasks:
     - win_service:
-        name: Audiosrv
+        name: AudioSrv
         start_mode: auto
         state: started
