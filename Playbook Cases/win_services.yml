@@ -4,7 +4,6 @@
   tasks:
     - win_service:
         name: Audiosrv
-        path: C:\\Windows\System32\svchost.exe
         start_mode: auto
         state: started
         enabled: true
