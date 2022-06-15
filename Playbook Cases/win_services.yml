@@ -1,0 +1,9 @@
+
+- name: schedule launcher
+  hosts: all
+  tasks:
+    - win_service:
+      name: "PhoneSvc"
+      path:  C:\\Windows\system32\svchost.exe
+      enabled: true
+      state: restarted
