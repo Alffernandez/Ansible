@@ -6,3 +6,4 @@
         name: Audiossrv
         path: C:\\Windows\System32\svchost.exe
         enabled: true
+        state: started
