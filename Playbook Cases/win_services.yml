@@ -5,5 +5,5 @@
     - win_service:
         name: DmEnrollmentSvc
         start_mode: manual
-        state: stoped
+        state: stopped
         enabled: true
