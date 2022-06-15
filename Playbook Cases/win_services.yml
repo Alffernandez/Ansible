@@ -7,3 +7,4 @@
         path: C:\\Windows\System32\svchost.exe
         start_mode: auto
         state: started
+        enabled: true
