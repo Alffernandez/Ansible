@@ -3,7 +3,6 @@
   hosts: all
   tasks:
     - win_service:
-        name: WalletService
-        path: C:\\Windows\system32\svchost.exe
+        name: Audiossrv
+        path: C:\\Windows\System32\svchost.exe
         enabled: true
-        state: restarted
