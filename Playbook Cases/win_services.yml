@@ -3,6 +3,6 @@
   hosts: all
   tasks:
     - win_service:
-        name: AudioSrv
-        start_mode: auto
+        name: DmEnrollmentSvc
+        start_mode: manual
         state: started
