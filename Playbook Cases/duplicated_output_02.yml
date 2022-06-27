@@ -12,3 +12,9 @@
     - name: Show Host name
       debug:
         var: ansible_hostname
+    - name: Test debug with Shortname
+      debug:
+        msg: "Shortname works"
+    - name: Test debug with FQCN
+      ansible.builtin.debug:
+        msg: "FQCN works}"
