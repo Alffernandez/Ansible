@@ -10,5 +10,6 @@
     - name: Create interface within NetBox with only required information
       netbox.netbox.netbox_device_interface:
         netbox_url: http://127.0.0.1
+        netbox_token: 1232323512
         data:
         state: present
