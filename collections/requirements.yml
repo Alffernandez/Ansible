@@ -1,3 +1,2 @@
 collections:
-- name: community.windows
-  source: https://192.168.122.10/api/galaxy/content/community/
+- name: netbox.netbox
