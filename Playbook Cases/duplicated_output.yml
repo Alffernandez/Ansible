@@ -1,6 +1,6 @@
 ---
 - name: Testing collection usage
-  serial: 1
+  serial: 5
   hosts: localhost
 
   tasks:
