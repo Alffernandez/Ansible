@@ -1,7 +1,7 @@
 ---
 - name: Testing collection usage
   hosts: all
-
+  strategy : free
   tasks:
     - name: Test debug with Shortname
       debug:
