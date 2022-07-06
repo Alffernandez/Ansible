@@ -1,7 +1,7 @@
 ---
 - name: Testing collection usage
   serial: 5
-  hosts: localhost
+  hosts: all
 
   tasks:
     - name: Test debug with Shortname
