@@ -7,4 +7,3 @@
         community.mysql.mysql_db:
           name: test
           state: present
-        ansible_python_interpreter: "{{ansible_playbook_python}}"
