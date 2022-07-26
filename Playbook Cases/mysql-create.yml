@@ -7,5 +7,3 @@
         community.mysql.mysql_db:
           name: test
           state: present
-  vars: 
-    ansible_python_interpreter: python3
