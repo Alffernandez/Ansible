@@ -1,6 +1,6 @@
 ---
 - name: Test mysql
-  hosts: localhost
+  hosts: all
 
   tasks:
       - name: Create a new database with name test
