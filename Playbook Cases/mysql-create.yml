@@ -5,5 +5,5 @@
   tasks:
       - name: Create a new database with name bobdata
         community.mysql.mysql_db:
-          name: bobdata
+          name: test
           state: present
