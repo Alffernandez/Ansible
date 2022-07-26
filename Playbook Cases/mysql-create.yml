@@ -3,7 +3,7 @@
   hosts: all
 
   tasks:
-      - name: Create a new database with name bobdata
+      - name: Create a new database with name test
         community.mysql.mysql_db:
           name: test
           state: present
