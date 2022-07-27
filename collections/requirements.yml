@@ -1,3 +1,5 @@
 ---
 collections:
-- community.mysql
+- name: community.mysql
+  version: 2.3.8
+  source: https://galaxy.ansible.com
