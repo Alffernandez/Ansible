@@ -6,5 +6,5 @@
       - name: Create a new database with name test
         community.mysql.mysql_db:
           name: test
-          login_host: 192.168.122.45
+          login_host: 192.168.122.47
           state: present
