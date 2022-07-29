@@ -4,7 +4,7 @@
   tasks:
     - name: unarchive test
       ansible.builtin.copy:
-        src: /opt/unarchive/test.tar
+        src: /apps/awx/package/test.tar
         dest: /opt/unarchivedb/
         group: root
         owner: root
