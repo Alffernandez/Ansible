@@ -3,7 +3,7 @@
   become: true
   tasks:
     - name: unarchive test
-      ansible.builtin.unarchive:
+      ansible.builtin.copy:
         src: /opt/unarchive/test.tar
         dest: /opt/unarchivedb/
         group: root
