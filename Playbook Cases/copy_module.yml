@@ -6,3 +6,4 @@
       ansible.builtin.copy:
         src: /tmp/test/*.txt
         dest: /tmp/copy/
+        remote_src: yes
