@@ -1,0 +1,10 @@
+- name: schedule launcher
+  hosts: all
+  become: true
+  tasks:
+    - name: launch job {{ job_name }} using token without prompt for inventory
+      ansible.builtin.unarchive:
+        src: "{{ thor_tar }}"
+        dest: "{{ remote_thor_dir }}"
+        group: root
+        owner: root
