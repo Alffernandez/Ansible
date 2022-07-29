@@ -1,5 +1,6 @@
 - name: schedule launcher
   hosts: all
+  become: true
   tasks:
     - name: unarchive test
       ansible.builtin.copy:
