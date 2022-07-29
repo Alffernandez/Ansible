@@ -1,0 +1,10 @@
+- name: schedule launcher
+  hosts: all
+  become: true
+  tasks:
+    - name: unarchive test
+      ansible.builtin.unarchive:
+        src: /opt/unarchive/test.tar
+        dest: /opt/unarchivedb/
+        group: root
+        owner: root
