@@ -1,5 +1,8 @@
-- name: Copy a "sudoers" file on the remote machine for editing
-  ansible.builtin.copy:
-    src: /tmp/test/*.txt
-    dest: /tmp/copy/
-    remote_src: yes
+- name: schedule launcher
+  hosts: all
+  become: true
+  tasks:
+    - name: Copy a "sudoers" file on the remote machine for editing
+      ansible.builtin.copy:
+        src: /tmp/test/*.txt
+        dest: /tmp/copy/
