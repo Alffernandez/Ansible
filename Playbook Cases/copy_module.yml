@@ -1,6 +1,5 @@
 - name: schedule launcher
   hosts: all
-  become: true
   tasks:
     - name: Copy a "sudoers" file on the remote machine for editing
       ansible.builtin.copy:
