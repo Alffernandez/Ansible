@@ -1,0 +1,18 @@
+---
+- name: Azure vault creds
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+  - name: Get Domain-User-Ansible-User secret value from Keyvault
+    azure.azcollection.azure_rm_keyvaultsecret_info:
+      vault_uri: "https://alfferna-key-vault.vault.azure.net/"
+#      name: "Domain-User-Ansible-User"
+      version: all
+      show_deleted_secret: True
+#      subscription_id: "{{ subscription_id }}"
+    register: kvAnsibleUser
+
+  - name: Debug it
+    debug:
+      msg: "{{ kvAnsibleUser }}"
