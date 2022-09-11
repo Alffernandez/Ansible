@@ -10,6 +10,8 @@
       ansible.builtin.debug:
         msg: "FQCN works}"
         
+    - command: "sleep 600"
+        
 # - name: Test at with FQCN
 #   ansible.posix.at:
 #     command: ls -d / >/dev/null
