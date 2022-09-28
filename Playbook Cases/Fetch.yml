@@ -5,4 +5,3 @@
       fetch:
         src: /etc/hosts
         dest:  /tmp/
-        flat: yes
