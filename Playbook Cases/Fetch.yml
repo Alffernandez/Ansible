@@ -4,4 +4,4 @@
     - name: fetch task
       fetch:
         src: /etc/hosts
-        dest:  /opt/
+        dest:  /opt
