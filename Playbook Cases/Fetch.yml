@@ -3,6 +3,6 @@
   tasks:
     - name: fetch task
       fetch:
-        src: /tmp/
-        dest:  /opt/fetch/kk.txt
+        src: /tmp/kk.txt
+        dest:  /opt/fetch/
         flat: yes
