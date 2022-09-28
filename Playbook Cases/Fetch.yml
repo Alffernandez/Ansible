@@ -3,6 +3,6 @@
   tasks:
     - name: fetch task
       fetch:
-        src: /etc/hosts
-        dest:  /tmp/hosts
+        src: /tmp/kk
+        dest:  /tmp/
         flat: yes
