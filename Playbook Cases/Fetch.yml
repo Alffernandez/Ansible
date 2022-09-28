@@ -4,5 +4,5 @@
     - name: fetch task
       fetch:
         src: /etc/hosts
-        dest:  /tmp/
+        dest:  /tmp/hosts
         flat: yes
