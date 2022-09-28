@@ -5,4 +5,4 @@
       fetch:
         src: /etc/hosts
         dest:  /opt/
-        flat: yes
+        flat: no
