@@ -5,4 +5,4 @@
       fetch:
         src: /tmp/kk.txt
         dest:  /opt/
-        flat: yes
+        flat: no
