@@ -1,0 +1,8 @@
+- name: fetch module
+  hosts: all
+  tasks:
+    - name: fetch task
+      fetch:
+        src: /etc/hosts
+        dest:  /tmp/hosts
+        flat: yes
