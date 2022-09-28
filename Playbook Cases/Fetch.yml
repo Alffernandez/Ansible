@@ -4,5 +4,5 @@
     - name: fetch task
       fetch:
         src: /tmp/kk.txt
-        dest:  /opt/
+        dest:  /opt/fetch/
         flat: yes
