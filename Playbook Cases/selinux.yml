@@ -2,6 +2,6 @@
   hosts: all
   tasks:
     - name: Enable SELinux
-      ansible.posix.selinux:
+      selinux:
         policy: targeted
         state: enforcing
