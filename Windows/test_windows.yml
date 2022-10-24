@@ -10,6 +10,7 @@
        owner: root
        group: root
        mode: '0644'
+     delegate_to: localhost
     
    - name: Get whoami information
      ansible.windows.win_whoami:
