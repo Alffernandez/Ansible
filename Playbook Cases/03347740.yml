@@ -1,6 +1,6 @@
 - hosts: all
 
-tasks:
+  tasks:
   - name: Check db connection
     community.general.mssql_script:
       login_user: test
