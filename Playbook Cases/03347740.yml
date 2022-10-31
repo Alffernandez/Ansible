@@ -1,0 +1,14 @@
+- hosts: all
+
+tasks:
+  - name: Check db connection
+    community.general.mssql_script:
+      login_user: test
+      login_password: test
+      login_host: 192.168.122.44
+      login_port: 1443
+      db: dbtest     
+      script: "SELECT 1"
+    register: prueba
+
+  - debug: var=prueba
