@@ -3,6 +3,6 @@
     - name: Validate if the file is present
       shell: ls -lrt /tmp/myprocess.pid
       register: lsresult
-      until: lsresult is not failed
+      until: lsresult.rc == 0
       retries: 10
       delay: 10
