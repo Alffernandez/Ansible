@@ -7,4 +7,5 @@
       register: SetTimeResult
       until: SeTimeResult.rc == 0
     
-    - debug: msg: "{{ SeTimeResult }}"
+    - debug: 
+        msg: "{{ SeTimeResult }}"
