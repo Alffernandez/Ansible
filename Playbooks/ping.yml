@@ -2,7 +2,7 @@
   tasks:
     - name: Example from an Ansible Playbook
       ansible.builtin.ping:
-      register: SetTimeResult
-      until: SeTimeResult.rc == 0
       retries: 10
-      delay: 30   
+      delay: 30
+      register: SetTimeResult
+      until: SeTimeResult.rc == 0   
