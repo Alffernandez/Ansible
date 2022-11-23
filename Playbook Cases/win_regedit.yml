@@ -9,4 +9,3 @@
       until: "SetTimeResult is not failed"
       retries: 10
       delay: 30
-      ignore_errors: yes
