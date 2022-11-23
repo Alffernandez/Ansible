@@ -1,8 +1,8 @@
 - hosts: all
   tasks:
-    - name: ping module
-      ansible.builtin.ping:
+    - name: Validate if the file is present
+      shell: ls -lrt /tmp/myprocess.pid
+      register: lsresult
+      until: "lsresult is not failed"
       retries: 10
-      delay: 30
-      register: result
-      until: result.rc == 0
+      delay: 10
