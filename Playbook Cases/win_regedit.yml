@@ -2,10 +2,361 @@
   tasks:
     - name: Set time service to sync with domain
       ansible.windows.win_regedit:
-        path: TEST:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
-        name: TEST
-        data: TEST
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
       register: SetTimeResult
       until: "SetTimeResult is not failed"
       retries: 10
       delay: 30
+
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+    
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+     
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+      
+    - name: Set time service to sync with domain
+      ansible.windows.win_regedit:
+        path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+        name: Type
+        data: NT5DS
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30
+   
