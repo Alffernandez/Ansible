@@ -1,0 +1,8 @@
+- hosts: all
+  tasks:
+    - name: Example from an Ansible Playbook
+      ansible.builtin.ping:
+      register: SetTimeResult
+      until: "SetTimeResult is not failed"
+      retries: 10
+      delay: 30   
