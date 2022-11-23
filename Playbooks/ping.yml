@@ -4,5 +4,5 @@
       ansible.builtin.ping:
       retries: 10
       delay: 30
-      register: SetTimeResult
-      until: SeTimeResult.rc == 0
+      register: result
+      until: result.rc == 0
