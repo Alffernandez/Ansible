@@ -3,6 +3,6 @@
     - name: Example from an Ansible Playbook
       ansible.builtin.ping:
       register: SetTimeResult
-      until: "SetTimeResult is not failed"
+      until: SeTimeResult.rc == 0
       retries: 10
       delay: 30   
