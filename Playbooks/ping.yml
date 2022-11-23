@@ -6,6 +6,3 @@
       delay: 30
       register: SetTimeResult
       until: SeTimeResult.rc == 0
-    
-    - debug: 
-        msg: "{{ SeTimeResult }}"
