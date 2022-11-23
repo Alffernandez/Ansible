@@ -1,8 +1,10 @@
 - hosts: all
   tasks:
-    - name: Example from an Ansible Playbook
+    - name: ping module
       ansible.builtin.ping:
       retries: 10
       delay: 30
       register: SetTimeResult
-      until: SeTimeResult.rc == 0   
+      until: SeTimeResult.rc == 0
+    
+    - debug: var=SetTimeResult
