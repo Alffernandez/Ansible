@@ -3,7 +3,7 @@
     - name: Set time service to sync with domain
       ansible.windows.win_regedit:
         path: HKLM:\SYSTEM\CurrentControlSet\services\W32Time\Parameters
-        name: Type
+        name: TEST
         data: TEST
       register: SetTimeResult
       until: "SetTimeResult is not failed"
