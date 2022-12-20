@@ -10,7 +10,6 @@
           ca_file: null,
           compress: true,
           headers: null,
-          insecure: true,
           kerberos: false,
           timeout: 0,
           token: bgerberberberberb,
