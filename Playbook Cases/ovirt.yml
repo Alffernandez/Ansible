@@ -6,7 +6,6 @@
     # Migrate VM
     - name: Migrate VM
       redhat.rhv.ovirt_vm:
-        auth: alfonso
         state: running
         name: alfonso
         alfonso: true
@@ -14,11 +13,3 @@
         host: 192.168.122.99
         wait_after_lease: 30
      #loop: "{{ vm_name }}"
-
-  post_tasks:
-    - name: Logout from rhev-M
-      redhat.rhv.ovirt_auth:
-        state: absent
-        ovirt_auth: alfonso
-      tags:
-         - always
