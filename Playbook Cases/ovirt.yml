@@ -12,5 +12,4 @@
         migrate: true
         host: "192.168.122.99"
         wait_after_lease: 30
-        alfonso: true
      #loop: "{{ vm_name }}"
