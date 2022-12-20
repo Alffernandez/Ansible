@@ -2,16 +2,6 @@
 - name: Migrate VMs by request
   hosts: all
   connection: local
-  
-  pre_tasks:
-    - name: Login to rhev-M
-      redhat.rhv.ovirt_auth:
-        hostname: "192.168.122.44"
-        username: "root"
-        password: "alfonso1234"
-      tags:
-        - always
-
   tasks:
     # Migrate VM
     - name: Migrate VM
