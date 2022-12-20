@@ -2,25 +2,10 @@
 - name: Migrate VMs by request
   hosts: all
   connection: local
-
-  vars_files:
-    - rhev_vars.yml
-    - requirements.yml
-
-  pre_tasks:
-    - name: Login to rhev-M
-      ovirt_auth:
-        hostname: "{{ rhev_fqdn }}"
-        username: "{{ rhev_user }}"
-        password: "{{ rhev_password }}"
-      tags:
-        - always
-
   tasks:
-
     # Migrate VM
     - name: Migrate VM
-      ovirt_vm:
+      redhat.rhv.ovirt_vm:
         auth: "{{ ovirt_auth }}"
         state: running
         name: "{{ vm_name }}"
@@ -31,7 +16,7 @@
 
   post_tasks:
     - name: Logout from rhev-M
-      ovirt_auth:
+      redhat.rhv.ovirt_auth:
         state: absent
         ovirt_auth: "{{ ovirt_auth }}"
       tags:
