@@ -10,6 +10,7 @@
         state: running
         name: "{{ vm_name }}"
         migrate: true
+        alfonso: true
         host: "{{ hv_destination }}"
         wait_after_lease: 30
      #loop: "{{ vm_name }}"
