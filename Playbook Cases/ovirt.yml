@@ -7,12 +7,12 @@
     - name: Migrate VM
       redhat.rhv.ovirt_vm:
         auth:
-          ca_file: null,
-          headers: null,
-          kerberos: false,
-          timeout: 0,
-          token: bgerberberberberb,
-          url: https://alfonso.test.local
+          - ca_file: null,
+            headers: null,
+            kerberos: false,
+            timeout: 0,
+            token: bgerberberberberb,
+            url: https://alfonso.test.local
         state: running
         name: alfonso
         alfonso: true
