@@ -10,7 +10,7 @@
           ca_file: null,
           headers: null,
           kerberos: false,
-          timeout: 0,
+          timeout: "0",
           token: bgerberberberberb,
           url: "https://alfonso.test.local"
         state: running
