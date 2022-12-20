@@ -8,7 +8,6 @@
       redhat.rhv.ovirt_vm:
         auth:
           ca_file: null,
-          compress: true,
           headers: null,
           kerberos: false,
           timeout: 0,
