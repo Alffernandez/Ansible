@@ -6,7 +6,7 @@
   pre_tasks:
     - name: Login to rhev-M
       redhat.rhv.ovirt_auth:
-        hostname: "https://alfonso.test.local"
+        hostname: "alfonso.test.local"
         username: "alfonso"
         password: "alfonso"
       tags:
