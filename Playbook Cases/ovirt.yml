@@ -2,21 +2,24 @@
 - name: Migrate VMs by request
   hosts: all
   connection: local
+  
+  pre_tasks:
+    - name: Login to rhev-M
+      ovirt_auth:
+        hostname: "https://alfonso.test.local"
+        username: "alfonso"
+        password: "alfonso"
+      tags:
+        - always
+
   tasks:
     # Migrate VM
     - name: Migrate VM
-      redhat.rhv.ovirt_vm:
-        auth:
-          - ca_file: null,
-            headers: null,
-            kerberos: false,
-            timeout: 0,
-            token: bgerberberberberb,
-            url: https://alfonso.test.local
+      ovirt_vm:
+        auth: "{{ ovirt_auth }}"
         state: running
-        name: alfonso
-        alfonso: true
+        name: "alfonso"
         migrate: true
-        host: 192.168.122.99
+        host: "192.168.122.99"
         wait_after_lease: 30
      #loop: "{{ vm_name }}"
