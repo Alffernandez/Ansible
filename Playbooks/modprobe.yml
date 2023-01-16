@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+    - name: Add the 802.1q module
+      community.general.modprobe:
+        name: 8021q
+        state: present
