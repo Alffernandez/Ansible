@@ -3,7 +3,7 @@
   tasks:
     - name: Fetch template info from Tower
       ansible.tower.tower_export:
-        tower_host: '192.168.122.47'
+        tower_host: '192.168.122.43'
         tower_username: 'admin'
         tower_password: "alfonso123"
         job_templates: 'all'
