@@ -1,4 +1,4 @@
 ---
 collections:
-- name: ansible.tower
-  version: 3.8.6
+- name: ansible.controller
+  version: 4.3.0
