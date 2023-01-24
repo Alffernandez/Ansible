@@ -7,5 +7,6 @@
         tower_username: 'admin'
         tower_password: "alfonso123"
         job_templates: 'all'
+        validate_certs: false
       register: export_results
       ignore_errors: true
