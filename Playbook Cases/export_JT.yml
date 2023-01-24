@@ -1,0 +1,11 @@
+- name: export JOb Templates
+  hosts: all
+  tasks:
+    - name: Fetch template info from Tower
+      ansible.tower.tower_export:
+        tower_host: '192.168.122.47'
+        tower_username: 'admin'
+        tower_password: "alfonso123"
+        job_templates: 'all'
+      register: export_results
+      ignore_errors: true
