@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: show variables
+      command: /usr/bin/env
+      delegate_to: localhost
+      register: output
+    - debug:
+        msg: "{{ output }}"
+      delegate_to: localhost
