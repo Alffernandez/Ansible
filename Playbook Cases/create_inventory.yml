@@ -12,16 +12,16 @@
         description: "create inventory"
         organization: "Default"
         variables:
-          "ansible_python_interpreter": "auto",
-          "b2w_user": "b2wbdp01",
-          "b2w_homedir": "/sftp/{{ b2w_user }}/home/b2w",
+          "ansible_python_interpreter": "auto"
+          "b2w_user": "b2wbdp01"
+          "b2w_homedir": "/sftp/{{ b2w_user }}/home/b2w"
           "data_disk_size_gb": 50
-          "enable_soe_reporting_subscription_manager": true,
-          "infoblox_ansible_user": "ansible",
-          "jobs_location": "{{ b2w_homedir }}/jobs",
-          "lnx_rhel_major_version": 8,
-          "lnx_rhel_minor_version": 4,
-          "satellite6_version": 6.1,
-          "sync_jobs_location": "{{ b2w_homedir }}/sync_jobs",
-          "system_disk_size_gb": 50,
+          "enable_soe_reporting_subscription_manager": true
+          "infoblox_ansible_user": "ansible"
+          "jobs_location": "{{ b2w_homedir }}/jobs"
+          "lnx_rhel_major_version": 8
+          "lnx_rhel_minor_version": 4
+          "satellite6_version": 6.1
+          "sync_jobs_location": "{{ b2w_homedir }}/sync_jobs"
+          "system_disk_size_gb": 50
           "vmware_guest_memory_in_mb": 2048
