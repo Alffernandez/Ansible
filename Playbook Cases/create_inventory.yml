@@ -14,7 +14,7 @@
         variables:
           ansible_python_interpreter: auto
           b2w_user: b2wbdp01
-          b2w_homedir: /sftp/{{b2w_user}}/home/b2w
+          b2w_homedir: "/sftp/'{{b2w_user}}'/home/b2w"
           data_disk_size_gb: 50
           enable_soe_reporting_subscription_manager: true
           infoblox_ansible_user: ansible
