@@ -1,0 +1,8 @@
+---
+- name: test 
+  hosts: all
+  tasks:  
+  - name: poc machine
+    debug:
+      msg: "I'm a poc machine"
+    when: ansible_fqdn | search("frparpoc") or ansible_fqdn | search("frprvpoc")
