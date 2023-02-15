@@ -5,4 +5,4 @@
   - name: poc machine
     debug:
       msg: "I'm a poc machine"
-    when: ansible_fqdn == "frparpoc" or ansible_fqdn == "frprvpoc"
+    when: ansible_fqdn | regex_search("frparpoc") or ansible_fqdn | regex_search("frprvpoc")
