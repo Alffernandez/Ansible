@@ -2,7 +2,7 @@
   hosts: all
   tasks:
     - name: List instances in compartment
-      oci_compute_instance_facts:
+      oracle.oci.oci_compute_instance_facts:
         compartment_id: 2
       register: instances_list
       delegate_to: localhost
