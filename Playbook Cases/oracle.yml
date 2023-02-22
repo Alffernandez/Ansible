@@ -1,0 +1,8 @@
+- name: oracle task
+  hosts: all
+  tasks:
+    - name: List instances in compartment
+      oci_compute_instance_facts:
+        compartment_id: "{{ compartment_id }}"
+      register: instances_list
+      delegate_to: localhost
