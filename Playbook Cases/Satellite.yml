@@ -9,10 +9,13 @@
       ansible.builtin.debug:
         var: output
       
-    - name: "Show all content view_versions for a content view"
-      redhat.satellite.content_view_version_info:
-        server_url: "{{ lookup('env','FOREMAN_SERVER_URL') }}"
-        username: "{{ lookup('env','FOREMAN_USERNAME') }}"
-        password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
-        organization: "test"
-        content_view: "CentOS 8 View"
+    - name: "Create or update Fedora content view"
+      redhat.satellite.content_view:
+        username: "{{ lookup('env','SATELLITE_USERNAME') }}"
+        password: "{{ lookup('env','SATELLITE_PASSWORD') }}"
+        server_url: "{{ lookup('env','SATELLITE_SERVER_URL') }}"
+        name: "Fedora CV"
+        organization: "My Cool new Organization"
+        repositories:
+         - name: 'Fedora 26'
+           product: 'Fedora'
