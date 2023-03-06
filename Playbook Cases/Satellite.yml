@@ -1,6 +1,14 @@
 - name: satellite
   hosts: all
   tasks:
+    - name: variables
+      ansible.builtin.command: env
+      register: output
+      
+    - name: debug
+      ansible.builtin.debug:
+      var: output
+      
     - name: "Show all content view_versions for a content view"
       redhat.satellite.content_view_version_info:
         server_url: "{{ lookup('env','SATELLITE_SERVER_URL') }}"
