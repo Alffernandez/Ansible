@@ -7,7 +7,7 @@
       
     - name: debug
       ansible.builtin.debug:
-      var: output
+        var: output
       
     - name: "Show all content view_versions for a content view"
       redhat.satellite.content_view_version_info:
