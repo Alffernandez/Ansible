@@ -1,4 +1,4 @@
 ---
 collections:
-- name: oracle.oci
-  version: 4.13.0
+- name: redhat.satellite
+  version: 3.9.0
