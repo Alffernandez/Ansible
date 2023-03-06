@@ -5,6 +5,6 @@
       redhat.satellite.content_view_version_info:
         server_url: "https://satellite.example.com"
         organization: "test"
-        username:
-        password:
+        username: admin
+        password: alfonso
         content_view: "CentOS 8 View"
