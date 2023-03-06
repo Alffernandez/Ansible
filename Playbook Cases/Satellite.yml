@@ -3,5 +3,8 @@
   tasks:
     - name: "Show all content view_versions for a content view"
       redhat.satellite.content_view_version_info:
+        server_url: "{{ lookup('env','SATELLITE_SERVER_URL') }}"
+        username: "{{ lookup('env','SATELLITE_USERNAME') }}"
+        password: "{{ lookup('env','SATELLITE_PASSWORD') }}"
         organization: "test"
         content_view: "CentOS 8 View"
