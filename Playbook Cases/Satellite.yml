@@ -5,6 +5,4 @@
       redhat.satellite.content_view_version_info:
         server_url: "https://satellite.example.com"
         organization: "test"
-        username: "{{ lookup('env','SATELLITE_USERNAME') }}"
-        password: "{{ lookup('env','SATELLITE_PASSWORD') }}"
         content_view: "CentOS 8 View"
