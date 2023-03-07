@@ -1,2 +1,2 @@
 [all]
-test-[1:2500]-node.example.com
+test-[1:15000]-node.example.com
