@@ -1,7 +1,6 @@
 ---
 - name: testing variable stuff
   hosts: all
-  remote_user: admin
 
   tasks:
   - name: get date on the server
