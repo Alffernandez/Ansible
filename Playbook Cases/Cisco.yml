@@ -1,6 +1,7 @@
 - name: cisco template
   hosts: all
   gather_facts: false
+  connection: network_cli
   tasks:
     - name: Show the ASA version
       cisco.asa.asa_command:
