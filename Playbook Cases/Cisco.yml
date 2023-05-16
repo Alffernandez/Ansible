@@ -1,0 +1,7 @@
+- name: cisco template
+  hosts: all
+  tasks:
+    - name: Show the ASA version
+      cisco.asa.asa_command:
+        commands:
+        - show version
