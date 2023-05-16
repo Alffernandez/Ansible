@@ -1,6 +1,6 @@
 - name: cisco template
   hosts: all
-  gather_facts: true
+  gather_facts: false
   connection: network_cli
   tasks:
     - name: Show the ASA version
