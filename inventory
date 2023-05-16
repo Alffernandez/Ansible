@@ -1,8 +1,0 @@
-[prod]
-test-[1:15000]-node.example.com
-
-[dev]
-test-[1:15000]-node.alfonso.com
-
-[test]
-test-[1:15000]-node.itzel.com
