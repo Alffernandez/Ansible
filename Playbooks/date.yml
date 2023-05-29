@@ -6,4 +6,4 @@
 
     - name: Ansible fact - ansible_date_time.iso8601
       debug:
-        msg: "Timestamp in the edt format: {{ ansible_date_time.edt }}"
+        msg: "Timestamp in the edt format: {{ ansible_date_time.date }}"
