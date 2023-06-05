@@ -1,0 +1,9 @@
+- name: openstack
+  hosts: all
+  tasks:
+    - name: Gather information about all 'web*' servers in active state
+      openstack.cloud.server_info:
+        cloud: devstack
+        name: web*
+        filters:
+          vm_state: active
