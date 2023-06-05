@@ -1,0 +1,7 @@
+- name: win_ping
+  hosts: all
+  tasks:
+    - name: ping win VMs
+        win_ping:
+        ignore_unreachable: yes
+        ignore_errors: yes
