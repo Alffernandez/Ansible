@@ -1,7 +1,14 @@
 - name: win_ping
   hosts: all
   tasks:
-    - name: ping win VMs
+      - name: ping win VMs
+        vars:
+          ansible_connection: winrm
+          ansible_winrm_server_cert_validation: ignore
+          ansible_winrm_transport: ntlm
+          #ansible_winrm_read_timeout_sec: 3600
+          ansible_port: 5985
         win_ping:
+        register: isWindows
         ignore_unreachable: yes
         ignore_errors: yes
