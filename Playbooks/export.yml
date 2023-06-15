@@ -1,9 +1,0 @@
-- hosts: all
-  become: yes
-  tasks:
-    - name: Variables
-      shell: export
-      register: result
-      
-    - debug:
-        msg: "{{ result }}"
