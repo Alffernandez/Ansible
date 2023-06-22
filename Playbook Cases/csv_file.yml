@@ -3,7 +3,7 @@
   tasks:
     - name: reading the csv file
       read_csv:
-        path: /tmp/user_table.csv
+        path: /tmp/user_data.csv
         delimiter: ','
       register: user_list
 
