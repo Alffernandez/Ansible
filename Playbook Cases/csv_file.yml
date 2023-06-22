@@ -1,11 +1,6 @@
 - name: csv file
   hosts: all
   tasks:
-    - name: Push csv file
-      copy:
-        dest: /tmp/user_table.csv
-        src: templates/user_table.csv
-
     - name: reading the csv file
       read_csv:
         path: /tmp/user_table.csv
