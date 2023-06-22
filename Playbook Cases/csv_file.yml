@@ -1,0 +1,27 @@
+- name: csv file
+  hosts: all
+  tasks:
+    - name: Push csv file
+      copy:
+        dest: /tmp/user_table.csv
+        src: templates/user_table.csv
+
+     - name: reading the csv file
+       read_csv:
+         path: /tmp/user_table.csv
+         delimiter: ','
+       register: user_list
+
+     - name: Create users from the csv
+       user:
+         name: "{{ item.Username }}"
+         uid: "{{ item.UID }}"
+         group: "{{ item.Groups }}"
+         append: true
+         password: "{{ item.Password | password_hash('sha512') }}"
+         comment: "{{ item.First_Name }} {{ item.Last_Name }}"
+         state: present
+       loop: "{{ user_list.list }}"
+       loop_control:
+         loop_var: item
+       become: true
