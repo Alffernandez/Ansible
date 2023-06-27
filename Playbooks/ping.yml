@@ -1,8 +1,4 @@
 - hosts: all
   tasks:
-    - name: Validate if the file is present
-      shell: ls -lrt /tmp/myprocess.pid
-      register: lsresult
-      until: lsresult.rc == 0
-      retries: 10
-      delay: 10
+    - name: Example from an Ansible Playbook
+      ansible.builtin.ping:
