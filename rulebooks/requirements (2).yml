@@ -1,0 +1,4 @@
+---
+collections:
+- name: theforeman.foreman
+- name: community.internal_test_tools
