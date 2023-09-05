@@ -1,4 +1,6 @@
 - hosts: localhost
+  become: true
+  become_method: su
   tasks:
     - name: Ansible fact - ansible_date_time
       debug:
