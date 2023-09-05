@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: all
   tasks:
     - name: Ansible fact - ansible_date_time
       debug:
