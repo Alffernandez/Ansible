@@ -1,7 +1,7 @@
 - hosts: all
   become: true
-  become_method: su
-  become_exe: sudo
+  become_method: sudo
+  become_flags: 'su -c'
   gather_facts: false
   tasks:
     - name: cat command
