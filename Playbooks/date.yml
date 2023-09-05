@@ -1,7 +1,4 @@
 - hosts: localhost
-  become: true
-  become_method: sudo
-  become_flags: su
   tasks:
     - name: Ansible fact - ansible_date_time
       debug:
