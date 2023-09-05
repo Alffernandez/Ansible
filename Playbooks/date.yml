@@ -2,7 +2,7 @@
   become: true
   become_user: root
   become_method: su
-  become_exec: "sudo su -"
+  become_exe: "sudo su -"
   gather_facts: false
   tasks:
     - name: cat command
