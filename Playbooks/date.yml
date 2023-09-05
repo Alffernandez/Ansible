@@ -2,11 +2,7 @@
   become: true
   become_method: sudo
   become_flags: su
+  gather_facts: false
   tasks:
-    - name: Ansible fact - ansible_date_time
-      debug:
-        var: ansible_date_time
-
-    - name: Ansible fact - ansible_date_time.iso8601
-      debug:
-        msg: "Timestamp in the edt format: {{ ansible_date_time.time }}"
+    - name: cat command
+      command: cat /etc/sudoers
