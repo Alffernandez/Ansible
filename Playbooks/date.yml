@@ -2,8 +2,9 @@
   become: true
   become_method: su
   become_user: root
-  become_password: alfonso1234
   gather_facts: false
+  vars:
+    ansible_become_pass: alfonso1234
   tasks:
     - name: cat command
       command: cat /etc/sudoers
