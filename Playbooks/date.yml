@@ -1,6 +1,8 @@
 - hosts: all
   become: true
   become_method: su
+  become_user: root
+  become_password: alfonso1234
   gather_facts: false
   tasks:
     - name: cat command
