@@ -1,4 +1,3 @@
 ---
 collections:
-- name: network.acls
-- name: zabbix.zabbix
+- name: redhat.rhel_system_roles
