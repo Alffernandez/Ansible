@@ -1,3 +1,4 @@
 ---
 collections:
 - name: redhat.rhel_system_roles
+- name: community.internal_test_tools
