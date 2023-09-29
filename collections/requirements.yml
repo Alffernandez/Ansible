@@ -1,5 +1,4 @@
 ---
 collections:
 - name: ansible.netcommon
-- name: theforeman.foreman
-- name: ansible.posix
+- name: fortinet.fortimanager
