@@ -1,8 +1,15 @@
 - hosts: all
-  become: true
-  become_method: su
-  become_user: root
   gather_facts: false
   tasks:
-    - name: cat command
-      command: cat /etc/sudoers
+    - name: Add tags to a virtual machine
+      community.vmware.vmware_tag_manager:
+        hostname: '{{ vcenter_hostname }}'
+        username: '{{ vcenter_username }}'
+        password: '{{ vcenter_password }}'
+        tag_names:
+          - Sample_Tag_0002
+          - Category_0001:Sample_Tag_0003
+        object_name: Fedora_VM
+        object_type: VirtualMachine
+        state: add
+      delegate_to: localhost
