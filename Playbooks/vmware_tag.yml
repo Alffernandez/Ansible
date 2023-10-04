@@ -1,15 +1,13 @@
 - hosts: all
   gather_facts: false
   tasks:
-    - name: Add tags to a virtual machine
-      community.vmware.vmware_tag_manager:
-        hostname: 192.168.122.111
-        username: admin
-        password: test123
-        tag_names:
-          - Sample_Tag_0002
-          - Category_0001:Sample_Tag_0003
-        object_name: Fedora_VM
-        object_type: VirtualMachine
-        state: add
+    - name: Create a tag
+      community.vmware.vmware_tag:
+        hostname: '{{ vcenter_hostname }}'
+        username: '{{ vcenter_username }}'
+        password: '{{ vcenter_password }}'
+        category_id: 'urn:vmomi:InventoryServiceCategory:e785088d-6981-4b1c-9fb8-1100c3e1f742:GLOBAL'
+        tag_name: Sample_Tag_0002
+        tag_description: Sample Description
+        state: present
       delegate_to: localhost
