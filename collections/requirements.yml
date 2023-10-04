@@ -1,4 +1,4 @@
 ---
 collections:
-- ansible.netcommon
-- fortinet.fortimanager
+  - name: community.vmware
+    version: 1.9.0
