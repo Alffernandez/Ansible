@@ -3,9 +3,9 @@
   tasks:
     - name: Add tags to a virtual machine
       community.vmware.vmware_tag_manager:
-        hostname: '{{ vcenter_hostname }}'
-        username: '{{ vcenter_username }}'
-        password: '{{ vcenter_password }}'
+        hostname: 192.168.122.111
+        username: admin
+        password: test123
         tag_names:
           - Sample_Tag_0002
           - Category_0001:Sample_Tag_0003
