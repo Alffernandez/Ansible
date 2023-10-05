@@ -1,0 +1,10 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Parser
+      ansible.utils.cli_parse:
+        text: "{{ lookup('file', '/opt/03629862/sample.txt') }}"
+        parser:
+          name: ansible.netcommon.native
+          template_path: /opt/03629862/all_details_enum.yaml
+        set_fact: details_facts
