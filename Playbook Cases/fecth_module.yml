@@ -4,5 +4,5 @@
     - name: fetch results to localhost
       fetch:
         flat: yes
-        src: "/opt/test_fetch.ods"
+        src: "/opt/base64.txt"
         dest: "/tmp/"
