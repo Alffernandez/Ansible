@@ -10,6 +10,6 @@
     - name: fetch results to localhost
       fetch:
         flat: yes
-        src: "/opt/base64.txt"
+        src: "{{ item.path }}"
         dest: "/tmp/"
       with_items: "{{ file2fetch.files }}"
