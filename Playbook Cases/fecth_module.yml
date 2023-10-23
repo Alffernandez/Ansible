@@ -1,0 +1,8 @@
+- name: fetch
+  hosts: all
+  tasks:
+    - name: fetch results to localhost
+      fetch:
+        flat: yes
+        src: "/opt/test_fetch.ods"
+        dest: "/tmp/"
