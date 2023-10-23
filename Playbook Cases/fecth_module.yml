@@ -4,7 +4,7 @@
     - name: get list of the result files
       find:
         paths: /opt
-        patterns: '.txt'
+        patterns: '*.txt'
         #use_regex: true
       register: file2fetch
     - name: fetch results to localhost
