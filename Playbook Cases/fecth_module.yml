@@ -3,7 +3,7 @@
   tasks:
     - name: get list of the result files
       find:
-        path: /opt
+        paths: /opt
         patterns: '.txt'
         #use_regex: true
       register: file2fetch
