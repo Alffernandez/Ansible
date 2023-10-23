@@ -1,8 +1,15 @@
 - name: fetch
   hosts: all
   tasks:
+    - name: get list of the result files
+      find:
+        path: /opt/
+        patterns: '.txt'
+        #use_regex: true
+      register: file2fetch
     - name: fetch results to localhost
       fetch:
         flat: yes
         src: "/opt/base64.txt"
         dest: "/tmp/"
+      with_items: "{{ file2fetch.files }}"
