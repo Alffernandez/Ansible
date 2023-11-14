@@ -1,0 +1,5 @@
+---
+roles:
+  - name: selinux
+    src: https://github.com/linux-system-roles/selinux.git
+    version: 1.1.0
