@@ -5,6 +5,7 @@
      azure_rm_snapshot:
        resource_group: myResourceGroup
        subscription_id: avewq243t23
+       name: mySnapshot
        tenant: 123456789
        secret: 123456789
        client_id:  123456789
