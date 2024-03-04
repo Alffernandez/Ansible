@@ -9,7 +9,6 @@
        secret: 123456789
        client_id:  123456789
        cert_validation_mode: ignore
-       name: "ansible-{{ snapident }}-{{ (item.split('/')[-1]).split('-')[:7]|join('-')|default(item.split('/')[-1]) }}"
        sku:
          name: Standard_ZRS
        creation_data:
