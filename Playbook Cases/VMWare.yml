@@ -9,9 +9,11 @@
       vcenter_validate_certs: false
       guest_OS: FEDORA
       placement:
-         cluster: /my_dc/host/my_cluster
-         folder: /AnsibleCreatedVMs
-         datacenter: /my_dc/datacenter/my_cluster
+        datastore: /my_dc/datastore/my_cluster
+        folder: /AnsibleCreatedVMs
+        cluster: /my_dc/host/my_cluster
+        folder: /AnsibleCreatedVMs
+        datacenter: /my_dc/datacenter/my_cluster
       memory:
         hot_add_enabled: true
         size_MiB: 1024
