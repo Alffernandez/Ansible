@@ -6,7 +6,11 @@
   - name: Create a virtual machine from a template
     vmware.vmware_rest.vcenter_vm:
       vcenter_hostname: vcenter.vmware.gsslab.pnq2.redhat.com
-      vcenter_validate_certs: false        
+      vcenter_validate_certs: false
+      placement:
+         cluster: /my_dc/host/my_cluster
+         folder: /AnsibleCreatedVMs
+         resource_pool: resourcepool
       memory:
         hot_add_enabled: true
         size_MiB: 1024
