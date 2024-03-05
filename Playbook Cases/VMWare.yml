@@ -7,10 +7,6 @@
     vmware.vmware_rest.vcenter_vm:
       vcenter_hostname: vcenter.vmware.gsslab.pnq2.redhat.com
       vcenter_validate_certs: false        
-      placement:
-        cluster: /my_dc/host/my_cluster
-        datastore: /my_dc/datastore/local
-        folder: /AnsibleCreatedVMs
       memory:
         hot_add_enabled: true
         size_MiB: 1024
