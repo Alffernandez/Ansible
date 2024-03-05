@@ -11,8 +11,7 @@
       placement:
          cluster: /my_dc/host/my_cluster
          folder: /AnsibleCreatedVMs
-         resource_pool: 1636ff6d-2168-4f75-ba30-d470598c0a5f
-         datacenter: /my_dc/host/my_cluster
+         datacenter: /my_dc/datacenter/my_cluster
       memory:
         hot_add_enabled: true
         size_MiB: 1024
