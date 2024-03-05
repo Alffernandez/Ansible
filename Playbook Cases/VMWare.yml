@@ -5,7 +5,7 @@
 
   - name: Create a virtual machine from a template
     vmware.vmware_rest.vcenter_vm:
-      vcenter_hostname: https://vmware.pnq.cee.redhat.com/
+      vcenter_hostname: https://vcenter.vmware.gsslab.pnq2.redhat.com
       vcenter_validate_certs: false        
       placement:
         cluster: /my_dc/host/my_cluster
