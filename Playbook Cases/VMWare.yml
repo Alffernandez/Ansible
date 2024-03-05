@@ -7,6 +7,7 @@
     vmware.vmware_rest.vcenter_vm:
       vcenter_hostname: vcenter.vmware.gsslab.pnq2.redhat.com
       vcenter_validate_certs: false
+      guest_OS: FEDORA
       placement:
          cluster: /my_dc/host/my_cluster
          folder: /AnsibleCreatedVMs
