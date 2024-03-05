@@ -1,0 +1,24 @@
+- name: Install multiple vms
+  gather_facts: no
+  hosts: localhost
+  tasks:
+
+  - name: Create a virtual machine from a template
+    vmware.vmware_rest.vcenter_vm:
+      vcenter_hostname: https://vmware.pnq.cee.redhat.com/
+      vcenter_username: 'test@vsphere.local'
+      vcenter_password: 'test123'
+      vcenter_validate_certs: false        
+      placement:
+        cluster: /my_dc/host/my_cluster
+        datastore: /my_dc/datastore/local
+        folder: /AnsibleCreatedVMs
+      memory:
+        hot_add_enabled: true
+        size_MiB: 1024
+      cpu:
+        cores_per_socket: 2
+        count: 1
+      power_on: true
+    delegate_to: localhost
+    register: deploy
