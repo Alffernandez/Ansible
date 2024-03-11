@@ -13,7 +13,7 @@
 
     - name: show java home
       debug:
-        msg "{{ tmp_java_home.stdout_lines }}"
+        msg: "{{ tmp_java_home.stdout_lines }}"
 
     - name: export test
       shell: |
@@ -27,4 +27,4 @@
 
     - name: show test home
       debug:
-        msg "{{ tmp_test_home.stdout_lines }}"
+        msg: "{{ tmp_test_home.stdout_lines }}"
