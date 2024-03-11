@@ -1,0 +1,30 @@
+- name: export variables
+  hosts: all
+  tasks:
+    - name: export JAVA
+      shell: |
+        export JAVA_HOME="/test/test1/test2"
+
+    - name: Get Java home
+      shell: |
+        echo $JAVA_HOME
+      register: tmp_java_home
+      no_log: no
+
+    - name: show java home
+      debug:
+        msg "{{ tmp_java_home.stdout_lines }}
+
+    - name: export test
+      shell: |
+        export TEST_HOME:"/test/test1/test2"
+
+    - name: get test home
+      shell: |
+        echo $TEST_HOME
+      register: tmp_test_home
+      no_log: no
+
+    - name: show test home
+      debug:
+        msg "{{ tmp_test_home.stdout_lines }}
