@@ -17,7 +17,7 @@
 
     - name: export test
       shell: |
-        export TEST_HOME:"/test/test1/test2"
+        export TEST_HOME="/test/test1/test2"
 
     - name: get test home
       shell: |
