@@ -2,7 +2,7 @@
   hosts: all
   tasks:
   - name: debug
-    shell: ls -la /var/lib/awx/
+    shell: ls -la /var/lib/awx/.ssh/
     register: shelloutput
 
   - name: debug
