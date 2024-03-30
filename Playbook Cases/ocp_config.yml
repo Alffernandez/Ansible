@@ -1,10 +1,6 @@
 - name: test
   hosts: all
   tasks:
-  - name: debug
-    shell: ls -la /var/lib/awx/.ssh/
-    register: shelloutput
-
-  - name: debug
-    debug:
-     var: shelloutput
+    - name: debug
+      shell: ls -la /var/lib/awx/.ssh/
+      register: shelloutput
