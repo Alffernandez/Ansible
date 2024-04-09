@@ -1,7 +1,3 @@
 ---
 collections:
-- name: vmware.vmware_rest 
-  version: 2.3.1
-- name: cloud.common
-  version: 2.1.4
-- name: azure.azcollection
+- name: community.general
