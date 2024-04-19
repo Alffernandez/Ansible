@@ -1,0 +1,15 @@
+- name: create job template
+  hosts: all
+  tasks:
+    - name: Create Ping job template
+      job_template:
+        name: "Ping"
+        job_type: "run"
+        organization: "Default"
+        inventory: "Demo Inventory"
+        project: "Demo Project"
+        playbook: "03001316.yml"
+        verbosity: 4
+        credentials:
+          - "Local"
+        state: "present"
