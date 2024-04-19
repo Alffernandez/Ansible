@@ -10,6 +10,5 @@
         project: "Demo Project"
         playbook: "03001316.yml"
         verbosity: 4
-        credentials:
-          - "Local"
+        credentials: "Demo Credential"
         state: "present"
