@@ -8,7 +8,7 @@
         organization: "Default"
         inventory: "Demo Inventory"
         project: "Demo Project"
-        playbook: "03001316.yml"
+        playbook: "hello_world.yml"
         verbosity: 4
         credentials: "Demo Credential"
         state: "present"
