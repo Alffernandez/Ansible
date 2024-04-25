@@ -9,6 +9,6 @@
         inventory: "Demo Inventory"
         project: "Demo Project"
         playbook: "hello_world.yml"
-        verbosity: 4
+        verbosity: 0
         credentials: "Demo Credential"
         state: "present"
