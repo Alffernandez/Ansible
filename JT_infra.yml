@@ -1,6 +1,9 @@
 - name: Playbook to configure ansible controller post installation
   hosts: all
-  vars_files:
-    - template.yml
+  pre_tasks:
+    - name: Include vars from controller_configs directory
+      ansible.builtin.include_vars:
+        dir: ./vars
+        extensions: ["yml"]
   roles:
     - infra.controller_configuration.job_templates
