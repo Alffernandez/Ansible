@@ -1,0 +1,4 @@
+- name: Playbook to configure ansible controller post installation
+  hosts: all
+  roles:
+    - infra.controller_configuration.job_templates
