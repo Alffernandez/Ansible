@@ -2,7 +2,7 @@
   hosts: all
   tasks:
     - name: Survey Template with vars
-      infra.controller_configuration.job_templates:
+      controller_configuration:
         name: TEST ALFONSO
         job_type: run
         inventory: Demo Inventory
