@@ -1,0 +1,12 @@
+- name: create job template
+  hosts: all
+  tasks:
+    - name: Survey Template with vars
+      infra.controller_configuration.job_templates:
+        job_type: run
+        inventory: Demo Inventory
+        execution_environment: Default
+        project: Demo Project
+        playbook: helloworld.yml
+        credentials: Demo Credential
+        verbosity: 0
