@@ -1,4 +1,3 @@
----
 controller_templates:
 - name: Survey Template with vars
   job_type: run
