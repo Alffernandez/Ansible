@@ -3,6 +3,7 @@
   tasks:
     - name: Survey Template with vars
       infra.controller_configuration.job_templates:
+        name: TEST ALFONSO
         job_type: run
         inventory: Demo Inventory
         execution_environment: Default
