@@ -1,13 +1,5 @@
-- name: create job template
+---
+- name: Playbook to configure ansible controller post installation
   hosts: all
-  tasks:
-    - name: Survey Template with vars
-      infra.controller_configuration.job_templates:
-        name: TEST ALFONSO
-        job_type: run
-        inventory: Demo Inventory
-        execution_environment: Default
-        project: Demo Project
-        playbook: helloworld.yml
-        credentials: Demo Credential
-        verbosity: 0
+  roles:
+    - {role: infra.controller_configuration.job_templates, when: controller_templates is defined}
