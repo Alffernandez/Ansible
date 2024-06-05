@@ -1,4 +1,6 @@
 - name: Playbook to configure ansible controller post installation
   hosts: all
+  vars_files:
+    - template.yml
   roles:
     - infra.controller_configuration.job_templates
