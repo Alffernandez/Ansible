@@ -2,7 +2,7 @@ controller_templates:
 - name: Survey Template with vars
   job_type: run
   inventory: Demo Inventory
-  execution_environment: default
+  execution_environment: Default execution environment
   project: Demo Project
   playbook: helloworld.yml
   credentials:
