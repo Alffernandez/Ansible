@@ -4,7 +4,7 @@ controller_templates:
   inventory: Demo Inventory
   execution_environment: Default execution environment
   project: Demo Project
-  playbook: helloworld.yml
+  playbook: hello_world.yml
   credentials:
   - Demo Credential
   verbosity: 0
