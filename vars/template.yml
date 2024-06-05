@@ -7,4 +7,4 @@ controller_templates:
   playbook: hello_world.yml
   credentials:
   - Demo Credential
-  verbosity: 4
+  verbosity: 0
