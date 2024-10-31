@@ -2,12 +2,7 @@
 - name: deploy instance
   hosts: localhost
   connection: local
-  vars:
-    type: ec2
-    instance_name: "{{ instance_name }}"
-    instance_flavor: t2.large
-    instance_disk_size: 10
-    instance_additional_port: ""
-    ec2_image_name: "RHEL-9.3.0_HVM-*x86_64"
-  include_role:
-    name: ansible_ssa.general.instance
+  tasks:
+    - name: deploy ec2 instance
+      include_role:
+        name: ansible_ssa.general.instance
