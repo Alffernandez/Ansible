@@ -1,8 +1,9 @@
 ---
 - name: deploy instance
   hosts: localhost
-  connection: local
+  gather_facts: false
+  
   tasks:
     - name: deploy ec2 instance
-      include_role:
+      ansible.builtin.include_role: 
         name: ansible_ssa.general.instance
