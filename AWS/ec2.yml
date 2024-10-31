@@ -2,5 +2,225 @@
 - name: deploy instance
   hosts: localhost
   gather_facts: false
-  roles:
-    - ansible_ssa.general.instance
+  tasks:
+    - name: Populate tag list
+      ansible.builtin.set_fact:
+        _tags:
+          name: "{{ ec2_vpc_name }}"
+          Name: "{{ ec2_vpc_name }}"
+
+    - name: Merge tags with instance_additional_tags
+      ansible.builtin.set_fact:
+        _tag_list: "{{ _tags | combine(instance_additional_tags) }}"
+      when:
+        - instance_additional_tags != {}
+
+    - name: Only use default tags
+      ansible.builtin.set_fact:
+        _tag_list: "{{ _tags }}"
+      when:
+        - instance_additional_tags == {}
+
+    - name: Create VPC - {{ ec2_vpc_name }}
+      amazon.aws.ec2_vpc_net:
+        name: "{{ ec2_vpc_name }}"
+        cidr_block: 172.31.0.0/16
+        region: "{{ ec2_region }}"
+        tags: "{{ _tag_list }}"
+      register: vpc
+
+    - name: Create subnet in VPC
+      amazon.aws.ec2_vpc_subnet:
+        vpc_id: "{{ vpc.vpc.id }}"
+        cidr: 172.31.1.0/24
+        region: "{{ ec2_region }}"
+        tags: "{{ _tag_list }}"
+      register: subnet
+
+    - name: Create internet gateway for VPC - {{ ec2_vpc_name }}
+      amazon.aws.ec2_vpc_igw:
+        vpc_id: "{{ vpc.vpc.id }}"
+        tags: "{{ _tag_list }}"
+        state: present
+        region: "{{ ec2_region }}"
+      register: igw
+
+    - name: Set up public subnet route table
+      amazon.aws.ec2_vpc_route_table:
+        vpc_id: "{{ vpc.vpc.id }}"
+        region: "{{ ec2_region }}"
+        tags: "{{ _tag_list }}"
+        subnets:
+          - "{{ subnet.subnet.id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ igw.gateway_id }}"
+
+    - name: Set port lists for Linux
+      ansible.builtin.set_fact:
+        port_list:
+          - 80
+          - 443
+          - 22
+      when: instance_type == "linux"
+
+    - name: Set port lists for Windows
+      ansible.builtin.set_fact:
+        port_list:
+          - 80
+          - 443
+          - 3389
+          - 5986
+      when: instance_type == "windows"
+
+    - name: Expand port list with additional port
+      ansible.builtin.set_fact:
+        port_list: "{{ port_list + [instance_additional_port] }}"
+      when: instance_additional_port is defined
+
+    - name: Expand port list with additional ports
+      ansible.builtin.set_fact:
+        port_list: "{{ port_list + instance_additional_ports }}"
+      when: instance_additional_ports is defined
+
+    - name: Create security group (HTTP, HTTPS and SSH) - {{ instance_name }}
+      amazon.aws.ec2_security_group:
+        name: "{{ instance_name }}"
+        description: HTTP, HTTPS and SSH
+        state: present
+        rules:
+          - proto: tcp
+            ports: "{{ port_list }}"
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on ports 80, 443 & 22
+        region: "{{ ec2_region }}"
+        vpc_id: "{{ vpc.vpc.id }}"
+        tags: "{{ _tag_list }}"
+      when: instance_type == "linux"
+
+    - name: Create security group (HTTP, HTTPS, WinRM and RDP) - {{ instance_name }}
+      amazon.aws.ec2_security_group:
+        name: "{{ instance_name }}"
+        description: HTTP, HTTPS, WinRM and RDP
+        state: present
+        rules:
+          - proto: tcp
+            ports: "{{ port_list }}"
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on ports 80, 443, 3389 & 5986
+        region: "{{ ec2_region }}"
+        vpc_id: "{{ vpc.vpc.id }}"
+        tags: "{{ _tag_list }}"
+      when: instance_type == "windows"
+
+    - name: Check if ec2_key_pair is a file
+      ansible.builtin.stat:
+        path: "{{ ec2_key_pair }}"
+      register: ec2_key_pair_stat
+      when: ec2_key_pair is defined
+
+    - name: Import SSH Key from file
+      amazon.aws.ec2_key:
+        name: "{{ ec2_vpc_name }}"
+        key_material: "{{ lookup('file', ec2_key_pair) }}"
+        region: "{{ ec2_region }}"
+        tags: "{{ _tag_list }}"
+      when:
+        - ec2_key_pair is defined
+        - ec2_key_pair_stat.stat.exists | bool
+
+    - name: Import SSH Key from variable
+      amazon.aws.ec2_key:
+        name: "{{ ec2_vpc_name }}"
+        key_material: "{{ ec2_key_pair }}"
+        region: "{{ ec2_region }}"
+        tags: "{{ _tag_list }}"
+      when:
+        - ec2_key_pair is defined
+        - not ec2_key_pair_stat.stat.exists | bool
+
+    - name: Find AMI with filter - {{ ec2_image_name }}
+      amazon.aws.ec2_ami_info:
+        filters:
+          name: "{{ ec2_image_name }}"
+        region: "{{ ec2_region }}"
+      register: ami_find
+      when: not ec2_ami_id
+
+    - name: Fail if AMI filter does not return valid image
+      ansible.builtin.fail:
+        msg: "AMI filter did not return any image."
+      when: not ami_find.images or ami_find.images | length == 0
+
+    - name: Create EC2 Linux instance - {{ instance_name }}
+      amazon.aws.ec2_instance:
+        image_id: "{{ ami_find.images[-1].image_id | default('') }}"
+        instance_type: "{{ instance_flavor }}"
+        security_group: "{{ instance_name }}"
+        name: "{{ instance_name }}"
+        key_name: "{{ ec2_vpc_name }}"
+        region: "{{ ec2_region }}"
+        vpc_subnet_id: "{{ subnet.subnet.id }}"
+        network:
+          assign_public_ip: true
+        tags: "{{ _tag_list }}"
+        volumes:
+          - device_name: "{{ ec2_ebs_device_name | default('/dev/sda1', true) }}"
+            ebs:
+              volume_size: "{{ instance_disk_size | default(20, true) }}"
+              delete_on_termination: true
+        state: running
+      register: linux_vm
+      when: instance_type == "linux"
+      retries: 10
+      until: linux_vm.instances[0].public_ip_address is defined
+
+    - name: Create EC2 Windows instance - {{ instance_name }}
+      amazon.aws.ec2_instance:
+        image_id: "{{ ami_find.images[-1].image_id | default('') }}"
+        instance_type: "{{ instance_flavor }}"
+        security_group: "{{ instance_name }}"
+        name: "{{ instance_name }}"
+        key_name: "{{ ec2_vpc_name }}"
+        region: "{{ ec2_region }}"
+        vpc_subnet_id: "{{ subnet.subnet.id }}"
+        network:
+          assign_public_ip: true
+        tags: "{{ _tag_list }}"
+        state: running
+        user_data: |
+          <powershell>
+          start-transcript
+          echo "Enable Ansible..."
+          Invoke-WebRequest -Uri https://raw.githubusercontent.com/ansible/ansible/v2.15.1/examples/scripts/ConfigureRemotingForAnsible.ps1 -OutFile ConfigureRemotingForAnsible.ps1
+          powershell -ExecutionPolicy RemoteSigned .\ConfigureRemotingForAnsible.ps1
+          echo "Create Ansible local user..."
+          $pass = "{{ windows_admin_password }}" | ConvertTo-SecureString -AsPlainText -Force
+          New-LocalUser "ansible" -Password $pass -FullName "Ansible Service Account"
+          echo "Add Ansible local user to local admin group..."
+          Add-LocalGroupMember -Group "Administrators" -Member "ansible"
+          </powershell>
+          <persist>true</persist>
+        volumes:
+          - device_name: "{{ ec2_ebs_device_name | default('/dev/sda1', true) }}"
+            ebs:
+              volume_size: "{{ instance_disk_size | default(40, true) }}"
+              delete_on_termination: true
+      register: windows_vm
+      when: instance_type == "windows"
+      until: windows_vm.instances[0].public_ip_address is defined
+      retries: 10
+
+    - name: Store Linux VM facts
+      ansible.builtin.set_fact:
+        ec2: "{{ linux_vm }}"
+      when: instance_type == "linux"
+
+    - name: Store Windows VM facts
+      ansible.builtin.set_fact:
+        ec2: "{{ windows_vm }}"
+      when: instance_type == "windows"
+
+    - name: Print instance details
+      ansible.builtin.debug:
+        msg: "Instance DNS name is: {{ ec2.instances[0].public_dns_name }} with IP address {{ ec2.instances[0].public_ip_address }}"
