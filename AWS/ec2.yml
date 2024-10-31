@@ -6,8 +6,8 @@
     - name: Populate tag list
       ansible.builtin.set_fact:
         _tags:
-          name: "{{ ec2_vpc_name }}"
-          Name: "{{ ec2_vpc_name }}"
+          name: "{{ instance_name }}"
+          Name: "{{ instance_name }}"
 
     - name: Merge tags with instance_additional_tags
       ansible.builtin.set_fact:
