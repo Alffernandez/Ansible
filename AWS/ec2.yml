@@ -15,7 +15,7 @@
      aws_access_key: "{{ ec2_access_key }}"
      aws_secret_key: "{{ ec2_secret_key }}"
      filters:
-       name: "RHEL-8.2.0_HVM-20200423-x86_64-0-Hourly2-GP2"
+       name: "RHEL-9.3.0_HVM-*x86_64*"
     register: find_results
 
   - debug:
@@ -33,9 +33,9 @@
       
   - name: create security group
     ec2_group:
-      name: alfonso_group
+      name: alfferna
       description: alfonso security group
-      vpc_id: vpc-ec5e458e
+      vpc_id: vpc-036901cd496b9aafe
       region: eu-west-1
       rules:
         - proto: tcp
@@ -49,13 +49,13 @@
     ec2:
        aws_access_key: "{{ ec2_access_key }}"
        aws_secret_key: "{{ ec2_secret_key }}"
-       instance_type: t2.micro
+       instance_type: t2.large
        region: eu-west-1
        image: "{{ find_results.images[0].image_id }}"
-       key_name: alffernandez
-       group: alfonso_group
+       key_name: alfferna
+       group: alfferna
        instance_tags:
-          Name: alferpal
+          Name: alfferna
        wait: yes
        vpc_subnet_id: "{{ subnet_ids.subnets[0].id }}"
        assign_public_ip: yes
