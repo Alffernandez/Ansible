@@ -1,4 +1,5 @@
 ---
 collections:
-  - name: https://gitlab.com/ansible-ssa/collection-ansible_ssa-general.git
+  - name: ansible_ssa.general
+    source: https://gitlab.com/ansible-ssa/collection-ansible_ssa-general.git
     type: git
