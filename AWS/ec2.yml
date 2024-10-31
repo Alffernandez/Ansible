@@ -2,8 +2,5 @@
 - name: deploy instance
   hosts: localhost
   gather_facts: false
-  
-  tasks:
-    - name: deploy ec2 instance
-      ansible.builtin.include_role: 
-        name: ansible_ssa.general.instance
+  roles:
+    - ansible_ssa.general.instance
