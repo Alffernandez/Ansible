@@ -8,7 +8,14 @@
 
   rules:
     - name: Event Log service was started
-      condition: event.payload.HostName == "testhostname"
+      condition: event.payload.EventId == "6005"
+      action: 
+        run_job_template:
+          name: "Demo Job Template"
+          organization: "Default"
+          
+    - name: Event Log service was started2
+      condition: event.payload.eventid == "6005"
       action: 
         run_job_template:
           name: "Demo Job Template"
