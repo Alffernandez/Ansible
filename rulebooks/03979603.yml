@@ -11,4 +11,5 @@
       condition: event.payload.HostName == "testhostname"
       action: 
         run_job_template:
-          name: Demo Job Template
+          name: "Demo Job Template"
+          organization: "Default"
