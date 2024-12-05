@@ -8,7 +8,7 @@
 
   rules:
     - name: Event Log service was started
-      condition: event.payload.message == "Ansible is super cool"
+      condition: event.payload.eventid == "6005"
       action: 
         run_job_template:
           name: Demo Job Template
