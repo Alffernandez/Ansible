@@ -3,8 +3,8 @@
   tasks:
     - name: Create symbolic link
       file:
-        src: /root/symlink
-        dest: /root/symlinktest
+        src: /tmp/symlink
+        dest: /tmp/symlinktest
         owner: alfonso
         group: alfonso
         state: link
