@@ -1,7 +1,5 @@
 - name: schedule launcher
   hosts: all
-  become_user: alfonso
-  become: yes
   tasks:
     - name: Create symbolic link
       file:
@@ -10,3 +8,4 @@
         owner: alfonso
         group: alfonso
         state: link
+        follow: false
