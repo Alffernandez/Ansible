@@ -1,5 +1,5 @@
 ---
-- name: install and configure mariadb
+- name: test
   hosts: all
   become_method: sudo
   become: yes
@@ -8,19 +8,19 @@
     mariadb_port: 3306
 
   tasks:
-     - name: install mariadb
+     - name: test
        yum: 
          name: mariadb-server 
          state: latest
 
-     - name: create mysql configuration file
+     - name: test
        template: 
          src: mariadb-server.cnf.j2 
          dest: /etc/my.cnf.d/mariadb-server.cnf
          backup: yes
        notify: restart mariadb
 
-     - name: create mariadb log file
+     - name: test
        file: 
          path: /var/log/mariadb/mariadb.log 
          state: touch 
@@ -28,7 +28,7 @@
          group: mysql 
          mode: 644
 
-     - name: start mariadb service
+     - name: test
        systemd: 
         name: mariadb 
         state: started 
