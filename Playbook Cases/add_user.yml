@@ -3,9 +3,9 @@
   tasks:
     - name: Users
       ansible.platform.user:
-        controller_host: 192.168.122.51
-        controller_username: admin
-        controller_password : alfonso123
+        gateway_hostname: 192.168.122.50
+        gateway_username: admin
+        gateway_password : alfonso123
         username: alfonso
         organizations:
           - organization01
