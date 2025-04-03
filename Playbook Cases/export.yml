@@ -1,0 +1,7 @@
+- hosts: all
+  tasks:
+    - name: Export all inventories
+      ansible.controller.export:
+        controller_host: 192.168.122.50
+        controller_username: admin
+        controller_password: alfonso123
