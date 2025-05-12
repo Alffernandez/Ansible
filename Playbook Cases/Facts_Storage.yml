@@ -1,0 +1,12 @@
+- name: Collect
+  hosts: all
+  gather_facts: false
+  tasks: 
+    - name: collect custom
+      become: true
+      ansible.builtin.setup:
+        gather_subnet:
+          - '!all,!min'
+        filter:
+          - ansible_local
+        fact_path: /etc/ansible/compliance.d/
