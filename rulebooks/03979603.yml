@@ -2,14 +2,9 @@
 - name: Capture POSTs from windows event
   hosts: all
   sources:
-    - ansible.eda.webhook:
-        host: 0.0.0.0
-        port: 5000
-
-  rules:
-    - name: Event Log service was started
-      condition: event.payload.EventId == 6005
-      action: 
-        run_job_template:
-          name: "Demo Job Template"
-          organization: "Default"
+    - test_xxx:
+        a: 'a'
+        interval: 60
+        xxx_URL: "https://xxx.xxx.xx"
+        MAIL: "xxx@xxxx"
+        API_TOKEN: "token
